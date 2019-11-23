@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- LIGHT THEME -->
+    <color name="cellClue">#A5D6A7</color>
+    <color name="cellDefault">#81D4FA</color>
+    <color name="cellMarked">#29B6F6</color>
+    <color name="regionColor">#EF9A9A</color>
+
+    <!-- DARK THEME -->
 </resources>

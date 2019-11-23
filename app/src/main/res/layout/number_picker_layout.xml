@@ -8,8 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     app:layoutDescription="@xml/scene_numbers"
-    app:currentState="@+id/start"
-    app:showPaths="true">
+    app:currentState="@+id/start">
 
     <FrameLayout
         android:id="@+id/fragmentFrame"

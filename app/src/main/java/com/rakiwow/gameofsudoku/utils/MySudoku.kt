@@ -5,22 +5,11 @@ import java.util.*
 class MySudoku {
 
     val rand : Random = Random()
-    val EMPTY_GRID : Array<IntArray> = arrayOf(
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
-    )
     var removedCells = 0
     var grid : Array<IntArray> = Array(9) { IntArray(9) }
 
     fun generateRow() : List<Int>{
-        val row = ArrayList<Int>()
+        val row = ArrayList<Int>(9)
         while (row.size < 9) {
             val randomNum = rand.nextInt(9) + 1
             if (!row.contains(randomNum)) {
@@ -28,6 +17,32 @@ class MySudoku {
             }
         }
         return row
+    }
+
+    fun createGame(): Array<IntArray>{
+        grid = Array(9) { IntArray(9) }
+        printGame(grid)
+        var grid_hardest : Array<IntArray> = Array(9) { IntArray(9) }
+        initGame()
+        var maxRemovedCellNumber = 0
+        while (maxRemovedCellNumber < 2){ //49
+            for(i in 0 until 1){ //1000
+                initGame()
+                var attempts = 0
+                while(attempts < 1){ //1000
+                    if(removeCellNumber()){
+                        attempts = 0
+                    }else{
+                        attempts++
+                    }
+                }
+                if(maxRemovedCellNumber < getRemovedCell()){
+                    maxRemovedCellNumber = getRemovedCell()
+                    grid_hardest = grid
+                }
+            }
+        }
+        return grid_hardest
     }
 
     private fun initGame(){
@@ -63,13 +78,20 @@ class MySudoku {
 
     private fun isSafe(i: Int, j: Int, value: Int): Boolean {
 
+        if(value == 0){
+            println("is 0")
+            return false
+        }
+
         for (k in 0 until grid.size) {
             //Check columns
-            if (value == grid[k][j]) {
+            if (value == grid[k][j] && k != i) {
+                println("column")
                 return false
             }
             //Check rows
-            if (value == grid[i][k]) {
+            if (value == grid[i][k] && k != j) {
+                println("row")
                 return false
             }
         }
@@ -78,55 +100,55 @@ class MySudoku {
         if (i <= 2 && j <= 2) {                 //Region 1: 1,1
             for (k in 0..2) {
                 for (l in 0..2) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i > 2 && i <= 5 && j <= 2) {    //Region 2: 2,1
             for (k in 3..5) {
                 for (l in 0..2) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i > 5 && j <= 2) {              //Region 3: 3,1
             for (k in 6..8) {
                 for (l in 0..2) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i <= 2 && j <= 5) {             //Region 4: 1,2
             for (k in 0..2) {
                 for (l in 3..5) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i > 2 && i <= 5 && j <= 5) {    //Region 5: 2,2
             for (k in 3..5) {
                 for (l in 3..5) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i > 5 && j <= 5) {              //Region 6: 3,2
             for (k in 6..8) {
                 for (l in 3..5) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i <= 2) {                       //Region 7: 1,3
             for (k in 0..2) {
                 for (l in 6..8) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else if (i <= 5) {                        //Region 8: 2,3
             for (k in 3..5) {
                 for (l in 6..8) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         } else {
             for (k in 6..8) {
                 for (l in 6..8) {
-                    if (grid[k][l] == value) return false
+                    if (grid[k][l] == value && k != i && l != j) return false
                 }
             }
         }
@@ -134,43 +156,18 @@ class MySudoku {
     }
 
     fun resetGrid(){
-        grid = EMPTY_GRID
+        grid = Array(9) { IntArray(9) }
     }
 
     fun printGame(game: Array<IntArray>) {
-        for (i in game.indices) {
-            for (j in 0 until game.size - 1) {
+        println(game.size)
+        for (i in 0 until 9) {
+            for (j in 0 until 9) {
                 print(game[i][j].toString() + " ")
             }
-            print(game[i][game.size - 1])
-            println()
+            println("\n")
         }
-    }
-
-    fun createGame(): Array<IntArray>{
-
-        var grid_hardest : Array<IntArray> = EMPTY_GRID
-        initGame()
-
-        var maxRemovedCellNumber = 0
-        while (maxRemovedCellNumber < 20){ //49
-            for(i in 0 until 100){ //1000
-                initGame()
-                var attempts = 0
-                while(attempts < 100){ //1000
-                    if(removeCellNumber()){
-                        attempts = 0
-                    }else{
-                        attempts++
-                    }
-                }
-                if(maxRemovedCellNumber < getRemovedCell()){
-                    maxRemovedCellNumber = getRemovedCell()
-                    grid_hardest = grid
-                }
-            }
-        }
-        return grid_hardest
+        println("----------------")
     }
 
     fun removeCellNumber() : Boolean{
@@ -201,6 +198,9 @@ class MySudoku {
         for (i in 0 until 9){
             if(isSafe(row,col,i)){
                 counter++
+                if(counter > 2){
+                    return false
+                }
             }
         }
         return counter < 2
@@ -214,13 +214,13 @@ class MySudoku {
         grid = board
         for (i in 0 until 9){
             for(j in 0 until 9){
-                grid[i][j] = 0
                 if(!isSafe(i,j,grid[i][j])){
+                    println(grid[i][j])
                     return false
                 }
             }
         }
-        grid = EMPTY_GRID
+        grid = Array(9) { IntArray(9) }
         return true
     }
 }
