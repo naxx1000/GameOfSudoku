@@ -4,11 +4,11 @@ import java.util.*
 
 class MySudoku {
 
-    val rand : Random = Random()
+    val rand: Random = Random()
     var removedCells = 0
-    var grid : Array<IntArray> = Array(9) { IntArray(9) }
+    var grid: Array<IntArray> = Array(9) { IntArray(9) }
 
-    fun generateRow() : List<Int>{
+    fun generateRow(): List<Int> {
         val row = ArrayList<Int>(9)
         while (row.size < 9) {
             val randomNum = rand.nextInt(9) + 1
@@ -19,10 +19,10 @@ class MySudoku {
         return row
     }
 
-    fun createGame(difficulty : Int): Array<IntArray>{
+    fun createGame(difficulty: Int): Array<IntArray> {
         grid = Array(9) { IntArray(9) }
-        var maxRemovedCells : Int
-        when(difficulty){
+        var maxRemovedCells: Int
+        when (difficulty) {
             0 -> maxRemovedCells = 25
             1 -> maxRemovedCells = 28
             2 -> maxRemovedCells = 31
@@ -31,45 +31,45 @@ class MySudoku {
             5 -> maxRemovedCells = 42
             6 -> maxRemovedCells = 45
             7 -> maxRemovedCells = 48
-            8 -> maxRemovedCells = 50
-            9 -> maxRemovedCells = 52
-            10 -> maxRemovedCells = 54
-            else -> maxRemovedCells = 54
+            8 -> maxRemovedCells = 52
+            9 -> maxRemovedCells = 54
+            10 -> maxRemovedCells = 58
+            else -> maxRemovedCells = 58
         }
-        var grid_hardest : Array<IntArray> = Array(9) { IntArray(9) }
-        initGame()
+        var grid_hardest: Array<IntArray> = Array(9) { IntArray(9) }
         var maxRemovedCellNumber = 0
-        while (maxRemovedCellNumber < maxRemovedCells - 4){ //49
-            for(i in 0 until 100){ //1000
+        // A grid with at least 4 less than the maximum amount of removed cells is returned
+        while (maxRemovedCellNumber < maxRemovedCells - 4) {
+            for (i in 0 until 1000) { //1000
                 initGame()
-                var attempts = 0
                 removedCells = 0
-                //TODO instead of checking 150 random cells, go through each cell systematically,
-                // (Random numbers 1-9 w/ generateRow()) This should boil it down to 81 attempts,
-                // and no more need to count attempts
-                loop@while(attempts < 81){
-                    if(removeCellNumber()){
-                        removedCells++
-                        attempts = 0
-                        if(removedCells >= maxRemovedCells){
-                            break@loop
+                //Generate random row
+                val rn = generateRow()
+                loop@for (j in 0 until 9){ //Iterate through all 81 cells
+                    for (k in 0 until 9){
+                        //Remove random cells based on the random 9 numbers from 'rn'
+                        if(removeCellNumber(rn[j] - 1,rn[k] - 1)){
+                            removedCells++
+                            // Ensures that not too many cells get removed, based on the difficulty
+                            // of the puzzle.
+                            if(removedCells >= maxRemovedCells){
+                                break@loop // Breaks the outer loop, appropriately named 'loop'
+                            }
                         }
-                    }else{
-                        attempts++
                     }
                 }
-                if(maxRemovedCellNumber < removedCells){
+                if (maxRemovedCellNumber < removedCells) {
                     maxRemovedCellNumber = removedCells
                     grid_hardest = grid
                 }
             }
         }
-        println("Clues: " + (81-maxRemovedCellNumber).toString())
+        println("Clues: " + (81 - maxRemovedCellNumber).toString())
         println("Removed cells: " + maxRemovedCellNumber.toString())
         return grid_hardest
     }
 
-    private fun initGame(){
+    private fun initGame() {
         resetGrid()
         createGameRec()
     }
@@ -102,7 +102,7 @@ class MySudoku {
 
     private fun isSafe(i: Int, j: Int, value: Int): Boolean {
 
-        if(value == 0){
+        if (value == 0) {
             //println("is 0")
             return false
         }
@@ -179,7 +179,7 @@ class MySudoku {
         return true
     }
 
-    fun resetGrid(){
+    fun resetGrid() {
         grid = Array(9) { IntArray(9) }
     }
 
@@ -193,34 +193,27 @@ class MySudoku {
         println("----------------")
     }
 
-    fun removeCellNumber() : Boolean{
-        var value_backup : Int
-        var row = rand.nextInt(9)
-        var col = rand.nextInt(9)
+    fun removeCellNumber(row: Int, col: Int): Boolean {
+        val value_backup: Int
 
-        while(true){
-            if(grid[row][col] == 0){
-                row = rand.nextInt(9)
-                col = rand.nextInt(9)
-            }else{
-                value_backup = grid[row][col]
-                grid[row][col] = 0
-                if(checkCellSolutions(row,col)){
-                    return true
-                }else{
-                    grid[row][col] = value_backup
-                    return false
-                }
+        while (true) {
+            value_backup = grid[row][col]
+            grid[row][col] = 0
+            if (checkCellSolutions(row, col)) {
+                return true
+            } else {
+                grid[row][col] = value_backup
+                return false
             }
         }
     }
 
-    private fun checkCellSolutions(row : Int, col : Int) : Boolean{
+    private fun checkCellSolutions(row: Int, col: Int): Boolean {
         var counter = 0
-        for (i in 0 until 9){
-            if(isSafe(row,col,i)){
+        for (i in 0 until 9) {
+            if (isSafe(row, col, i)) {
                 counter++
-                if(counter > 2){
+                if (counter > 2) {
                     return false
                 }
             }
@@ -228,12 +221,12 @@ class MySudoku {
         return counter < 2
     }
 
-    fun validateBoard(board : Array<IntArray>) : Boolean{
+    fun validateBoard(board: Array<IntArray>): Boolean {
         //TODO compare with previous finished grid instead
         grid = board
-        for (i in 0 until 9){
-            for(j in 0 until 9){
-                if(!isSafe(i,j,grid[i][j])){
+        for (i in 0 until 9) {
+            for (j in 0 until 9) {
+                if (!isSafe(i, j, grid[i][j])) {
                     return false
                 }
             }

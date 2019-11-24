@@ -5,10 +5,11 @@
     <color name="colorAccent">#D81B60</color>
 
     <!-- LIGHT THEME -->
-    <color name="cellClue">#A5D6A7</color>
-    <color name="cellDefault">#81D4FA</color>
-    <color name="cellMarked">#29B6F6</color>
-    <color name="regionColor">#EF9A9A</color>
+    <color name="cellDefault">#A4F1FA</color>
+    <color name="cellClue">#79C8D1</color>
+    <color name="cellMarked">#33868F</color>
+    <color name="regionColor">#F2D9C7</color>
+    <color name="textColor">#826A58</color>
 
     <!-- DARK THEME -->
 </resources>
