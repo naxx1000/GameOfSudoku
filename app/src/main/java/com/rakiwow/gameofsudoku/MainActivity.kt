@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
 
     suspend fun createPuzzleBackground() = coroutineScope {
         launch{
-            game = sudoku.createGame(0)
+            game = sudoku.createGame(10)
         }
     }
 
@@ -199,7 +199,6 @@ class MainActivity : AppCompatActivity() {
 
     fun sudokuOnClickListeners(){
         //TODO "Fragment already added" error when tapping fast on a cell
-        //TODO put all fragmentIngress() inside submitCellNumber function
         cell_11.setOnClickListener {submitCellNumber(it, 1, 1)}
         cell_12.setOnClickListener {submitCellNumber(it, 2, 1)}
         cell_13.setOnClickListener {submitCellNumber(it, 3, 1)}
@@ -384,6 +383,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //TODO Pause timer
     fun startStopWatch(){
         stopWatchTimer.scheduleAtFixedRate(
             object : TimerTask(){

@@ -2,7 +2,7 @@ package com.rakiwow.gameofsudoku.utils
 
 import java.util.*
 
-class StopWatchTask : TimerTask() {
+open class StopWatchTask : TimerTask() {
 
     var mIsTicking = false
 

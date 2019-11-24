@@ -44,7 +44,10 @@ class MySudoku {
                 initGame()
                 var attempts = 0
                 removedCells = 0
-                loop@while(attempts < 150){ //1000
+                //TODO instead of checking 150 random cells, go through each cell systematically,
+                // (Random numbers 1-9 w/ generateRow()) This should boil it down to 81 attempts,
+                // and no more need to count attempts
+                loop@while(attempts < 81){
                     if(removeCellNumber()){
                         removedCells++
                         attempts = 0
