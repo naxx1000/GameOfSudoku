@@ -19,29 +19,50 @@ class MySudoku {
         return row
     }
 
-    fun createGame(): Array<IntArray>{
+    fun createGame(difficulty : Int): Array<IntArray>{
         grid = Array(9) { IntArray(9) }
-        printGame(grid)
+        var maxRemovedCells : Int
+        when(difficulty){
+            0 -> maxRemovedCells = 25
+            1 -> maxRemovedCells = 28
+            2 -> maxRemovedCells = 31
+            3 -> maxRemovedCells = 34
+            4 -> maxRemovedCells = 38
+            5 -> maxRemovedCells = 42
+            6 -> maxRemovedCells = 45
+            7 -> maxRemovedCells = 48
+            8 -> maxRemovedCells = 50
+            9 -> maxRemovedCells = 52
+            10 -> maxRemovedCells = 54
+            else -> maxRemovedCells = 54
+        }
         var grid_hardest : Array<IntArray> = Array(9) { IntArray(9) }
         initGame()
         var maxRemovedCellNumber = 0
-        while (maxRemovedCellNumber < 2){ //49
-            for(i in 0 until 1){ //1000
+        while (maxRemovedCellNumber < maxRemovedCells - 4){ //49
+            for(i in 0 until 100){ //1000
                 initGame()
                 var attempts = 0
-                while(attempts < 1){ //1000
+                removedCells = 0
+                loop@while(attempts < 150){ //1000
                     if(removeCellNumber()){
+                        removedCells++
                         attempts = 0
+                        if(removedCells >= maxRemovedCells){
+                            break@loop
+                        }
                     }else{
                         attempts++
                     }
                 }
-                if(maxRemovedCellNumber < getRemovedCell()){
-                    maxRemovedCellNumber = getRemovedCell()
+                if(maxRemovedCellNumber < removedCells){
+                    maxRemovedCellNumber = removedCells
                     grid_hardest = grid
                 }
             }
         }
+        println("Clues: " + (81-maxRemovedCellNumber).toString())
+        println("Removed cells: " + maxRemovedCellNumber.toString())
         return grid_hardest
     }
 
@@ -79,19 +100,19 @@ class MySudoku {
     private fun isSafe(i: Int, j: Int, value: Int): Boolean {
 
         if(value == 0){
-            println("is 0")
+            //println("is 0")
             return false
         }
 
         for (k in 0 until grid.size) {
             //Check columns
             if (value == grid[k][j] && k != i) {
-                println("column")
+                //println("column")
                 return false
             }
             //Check rows
             if (value == grid[i][k] && k != j) {
-                println("row")
+                //println("row")
                 return false
             }
         }
@@ -160,7 +181,6 @@ class MySudoku {
     }
 
     fun printGame(game: Array<IntArray>) {
-        println(game.size)
         for (i in 0 until 9) {
             for (j in 0 until 9) {
                 print(game[i][j].toString() + " ")
@@ -183,7 +203,6 @@ class MySudoku {
                 value_backup = grid[row][col]
                 grid[row][col] = 0
                 if(checkCellSolutions(row,col)){
-                    removedCells++
                     return true
                 }else{
                     grid[row][col] = value_backup
@@ -206,16 +225,12 @@ class MySudoku {
         return counter < 2
     }
 
-    fun getRemovedCell() : Int{
-        return removedCells
-    }
-
     fun validateBoard(board : Array<IntArray>) : Boolean{
+        //TODO compare with previous finished grid instead
         grid = board
         for (i in 0 until 9){
             for(j in 0 until 9){
                 if(!isSafe(i,j,grid[i][j])){
-                    println(grid[i][j])
                     return false
                 }
             }

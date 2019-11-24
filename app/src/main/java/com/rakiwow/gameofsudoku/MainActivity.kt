@@ -9,16 +9,21 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import com.rakiwow.gameofsudoku.utils.MySudoku
+import com.rakiwow.gameofsudoku.utils.StopWatchTask
 import com.rakiwow.gameofsudoku.views.NumberPickerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     val sudoku : MySudoku = MySudoku()
     val numberFragment = NumberPickerFragment()
+    val stopWatchTimer = Timer()
 
+    var stopWatchSeconds : Int = 0
+    var stopWatchMinutes : Int = 0
     var rowCtx : Int = 0
     var colCtx : Int = 0
     lateinit var cellCtx : TextView
@@ -34,12 +39,12 @@ class MainActivity : AppCompatActivity() {
         intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
     )
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         createPuzzle()
+        startStopWatch()
     }
 
     //TODO Lock initial clues of the sudoku puzzle, and also change the color of them
@@ -161,12 +166,15 @@ class MainActivity : AppCompatActivity() {
             button_generate.visibility = View.VISIBLE
             sudokuOnClickListeners()
             setUpGrid(game)
+            stopWatchSeconds = 0
+            stopWatchMinutes = 0
+            textViewTimer.text = "00:00"
         }
     }
 
     suspend fun createPuzzleBackground() = coroutineScope {
         launch{
-            game = sudoku.createGame()
+            game = sudoku.createGame(0)
         }
     }
 
@@ -376,4 +384,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun startStopWatch(){
+        stopWatchTimer.scheduleAtFixedRate(
+            object : TimerTask(){
+                override fun run() {
+                    stopWatchSeconds++
+                    if(stopWatchSeconds >= 60){
+                        stopWatchMinutes++
+                        stopWatchSeconds = 0
+                    }
+                    var timerString = ""
+                    if(stopWatchMinutes < 10){
+                        timerString += "0$stopWatchMinutes:"
+                    }else{
+                        timerString += "$stopWatchMinutes:"
+                    }
+                    if(stopWatchSeconds < 10){
+                        timerString += "0$stopWatchSeconds"
+                    }else{
+                        timerString += "$stopWatchSeconds"
+                    }
+                    textViewTimer.text = timerString
+                }
+            }
+            , 1000, 1000
+        )
+    }
 }
