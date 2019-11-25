@@ -9,6 +9,8 @@
         android:right="0dp"
         android:bottom="0dp"
         />
+    <corners
+        android:radius="2dp"/>
     <size
         android:width="50dp"
         android:height="50dp"

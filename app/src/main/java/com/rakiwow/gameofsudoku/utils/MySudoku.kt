@@ -7,6 +7,8 @@ class MySudoku {
     val rand: Random = Random()
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
+    //Will contain the finished version of the current grid, to compare later when the player has finished
+    var initGrid: Array<IntArray> = Array(9) { IntArray(9) }
 
     fun generateRow(): List<Int> {
         val row = ArrayList<Int>(9)
@@ -40,7 +42,8 @@ class MySudoku {
         var maxRemovedCellNumber = 0
         // A grid with at least 4 less than the maximum amount of removed cells is returned
         while (maxRemovedCellNumber < maxRemovedCells - 4) {
-            for (i in 0 until 1000) { //1000
+            // Create n games and find the hardest that matches the difficulty criteria
+            for (i in 0 until 1000) {
                 initGame()
                 removedCells = 0
                 //Generate random row
@@ -70,20 +73,19 @@ class MySudoku {
     }
 
     private fun initGame() {
-        resetGrid()
-        createGameRec()
+        resetGrid() //Must reset all cells in the grid to 0 before a new game can be created
+        createGameRec() //Recursive function to create a sudoku board
     }
 
     private fun createGameRec(): Boolean {
-
         for (i in 0 until grid.size) {   // Iterate through each column
             for (j in 0 until grid.size) {   // Iterate through each row
                 if (grid[i][j] == 0) {    // Check if cell is empty, otherwise iterate to next cell
-                    val rn3 = generateRow()
+                    val rn = generateRow()
                     for (n in 0 until grid.size) { // Go through numbers 1-9 in the cell
-                        if (isSafe(i, j, rn3[n])) { // Check if number is safe in this cell
+                        if (isSafe(i, j, rn[n])) { // Check if number is safe in this cell
                             grid[i][j] =
-                                rn3[n] // If number is safe in the cell, cell is assigned the number
+                                rn[n] // If number is safe in the cell, cell is assigned the number
                             if (createGameRec()) { // If child is true, return true to root
                                 return true
                             } else {              // If child has is false, set cell to zero
@@ -96,8 +98,8 @@ class MySudoku {
                 }
             }
         }
-        // Return true all the way up to the root
-        return true
+        // Base case: If every cell in the grid is not 0, return true.
+        return true // Return true all the way up to the root.
     }
 
     private fun isSafe(i: Int, j: Int, value: Int): Boolean {
@@ -232,6 +234,15 @@ class MySudoku {
             }
         }
         grid = Array(9) { IntArray(9) }
+        return true
+    }
+
+    fun isGridFilled(board: Array<IntArray>): Boolean{
+        for (i in 0 until 9){
+            for (j in 0 until 9){
+                if(board[i][j] == 0) return false
+            }
+        }
         return true
     }
 }
