@@ -36,7 +36,7 @@ class MySudoku {
             8 -> maxRemovedCells = 52
             9 -> maxRemovedCells = 54
             10 -> maxRemovedCells = 58
-            else -> maxRemovedCells = 58
+            else -> maxRemovedCells = 70
         }
         var grid_hardest: Array<IntArray> = Array(9) { IntArray(9) }
         var maxRemovedCellNumber = 0
@@ -46,6 +46,7 @@ class MySudoku {
             for (i in 0 until 1000) {
                 initGame()
                 removedCells = 0
+
                 //Generate random row
                 val rn = generateRow()
                 loop@for (j in 0 until 9){ //Iterate through all 81 cells
@@ -61,6 +62,7 @@ class MySudoku {
                         }
                     }
                 }
+
                 if (maxRemovedCellNumber < removedCells) {
                     maxRemovedCellNumber = removedCells
                     grid_hardest = grid
@@ -201,26 +203,30 @@ class MySudoku {
         while (true) {
             value_backup = grid[row][col]
             grid[row][col] = 0
-            if (checkCellSolutions(row, col)) {
-                return true
-            } else {
-                grid[row][col] = value_backup
-                return false
+            for (i in 0 until 9){
+                for (j in 0 until 9){
+                    if (!checkCellSolutions(i, j)) {
+                        grid[row][col] = value_backup
+                        return false
+                    }
+                }
             }
+            return true
         }
     }
 
-    private fun checkCellSolutions(row: Int, col: Int): Boolean {
+    fun checkCellSolutions(row: Int, col: Int): Boolean {
         var counter = 0
         for (i in 0 until 9) {
             if (isSafe(row, col, i)) {
                 counter++
                 if (counter > 2) {
+                    // Returns false if more than two solutions are found
                     return false
                 }
             }
         }
-        return counter < 2
+        return true
     }
 
     fun validateBoard(board: Array<IntArray>): Boolean {
