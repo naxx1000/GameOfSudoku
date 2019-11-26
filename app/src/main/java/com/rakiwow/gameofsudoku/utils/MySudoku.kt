@@ -5,11 +5,22 @@ import java.util.*
 class MySudoku {
 
     var solutionCounter = 0
-    val rand: Random = Random(523432)
+    val rand: Random = Random()
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
-    //Will contain the finished version of the current grid, to compare later when the player has finished
-    var initGrid: Array<IntArray> = Array(9) { IntArray(9) }
+    var oneDimList: ArrayList<String> = ArrayList(81)
+    var oneDimArr = arrayOf(
+        "1,1","1,2","1,3","1,4","1,5","1,6","1,7","1,8","1,9",
+        "2,1","2,2","2,3","2,4","2,5","2,6","2,7","2,8","2,9",
+        "3,1","3,2","3,3","3,4","3,5","3,6","3,7","3,8","3,9",
+        "4,1","4,2","4,3","4,4","4,5","4,6","4,7","4,8","4,9",
+        "5,1","5,2","5,3","5,4","5,5","5,6","5,7","5,8","5,9",
+        "6,1","6,2","6,3","6,4","6,5","6,6","6,7","6,8","6,9",
+        "7,1","7,2","7,3","7,4","7,5","7,6","7,7","7,8","7,9",
+        "8,1","8,2","8,3","8,4","8,5","8,6","8,7","8,8","8,9",
+        "9,1","9,2","9,3","9,4","9,5","9,6","9,7","9,8","9,9"
+    )
+
     lateinit var lastEmptyCell: IntArray
 
     fun generateRow(): List<Int> {
@@ -24,66 +35,45 @@ class MySudoku {
     }
 
     fun createGame(difficulty: Int): Array<IntArray> {
-        grid = Array(9) { IntArray(9) }
         var maxRemovedCells: Int
         when (difficulty) {
-            0 -> maxRemovedCells = 25
-            1 -> maxRemovedCells = 28
-            2 -> maxRemovedCells = 31
-            3 -> maxRemovedCells = 34
-            4 -> maxRemovedCells = 38
-            5 -> maxRemovedCells = 42
-            6 -> maxRemovedCells = 45
-            7 -> maxRemovedCells = 48
-            8 -> maxRemovedCells = 52
-            9 -> maxRemovedCells = 54
-            10 -> maxRemovedCells = 58
-            else -> maxRemovedCells = 70
+            0 -> maxRemovedCells = 40
+            1 -> maxRemovedCells = 42
+            2 -> maxRemovedCells = 44
+            3 -> maxRemovedCells = 46
+            4 -> maxRemovedCells = 48
+            5 -> maxRemovedCells = 50
+            6 -> maxRemovedCells = 52
+            7 -> maxRemovedCells = 53
+            8 -> maxRemovedCells = 54
+            9 -> maxRemovedCells = 55
+            10 -> maxRemovedCells = 56
+            404 -> maxRemovedCells = 3 //For debugging
+            else -> maxRemovedCells = 58
         }
-        var grid_hardest: Array<IntArray> = Array(9) { IntArray(9) }
-        var maxRemovedCellNumber = 0
 
-        initGame()
-        removedCells = 0
+        loop@ for (n in 0 until 100){
+            initGame()
+            removedCells = 0
 
-        //Generate random row
-        val rn = generateRow()
-
-        loop@ for (i in 0 until 9) { //Iterate through all 81 cells
-            for (j in 0 until 9) {
-                //Remove random cells based on the random 9 numbers from 'rn'
-                if (removeCellNumber(rn[i] - 1, rn[j] - 1)) {
-                    removedCells++
-                    // Ensures that not too many cells get removed, based on the difficulty
-                    // of the puzzle.
-                    if (removedCells >= maxRemovedCells) {
-                        break@loop // Breaks the outer loop, appropriately named 'loop'
-                    }
-                }/*
-                if (removeCellNumber(8 - rn[i] + 1, 8 - rn[j] + 1)){
-                    removedCells++
-                    // Ensures that not too many cells get removed, based on the difficulty
-                    // of the puzzle.
-                    if (removedCells >= maxRemovedCells) {
-                        break@loop // Breaks the outer loop, appropriately named 'loop'
-                    }
-                }*/
+            for (i in 0 until 81){
+                oneDimList.add(oneDimArr[i])
             }
-
-            if (maxRemovedCellNumber <= removedCells) {
-                maxRemovedCellNumber = removedCells
-                grid_hardest = grid
+            oneDimList.shuffle()
+            for (i in 0 until 81){
+                if(removeCellNumber(oneDimList[i].split(",")[0].toInt() - 1, oneDimList[i].split(",")[1].toInt() - 1)){
+                    if(actualClues() <= 81-maxRemovedCells) break@loop
+                }
+                if(removeCellNumber(8 - oneDimList[i].split(",")[0].toInt() + 1, 8 - oneDimList[i].split(",")[1].toInt() + 1)){
+                    if(actualClues() <= 81-maxRemovedCells) break@loop
+                }
             }
         }
 
-        println("Clues: " + (81 - maxRemovedCellNumber).toString())
-        println("Removed cells: " + maxRemovedCellNumber.toString())
-        return grid_hardest
-    }
 
-    fun insertGrid(arrArr: Array<IntArray>){
-        grid = arrArr
-        lastEmptyCell = findLastEmptyCell()
+        println("Clues: " + actualClues())
+        println("Removed cells: " + (81 - actualClues()))
+        return grid
     }
 
     private fun initGame() {
@@ -197,6 +187,7 @@ class MySudoku {
 
     fun resetGrid() {
         grid = Array(9) { IntArray(9) }
+        oneDimList = ArrayList(81)
     }
 
     fun printGame(game: Array<IntArray>) {
@@ -212,40 +203,17 @@ class MySudoku {
     fun removeCellNumber(row: Int, col: Int): Boolean {
         val value_backup: Int
 
-        while (true) {
-            value_backup = grid[row][col]
-            grid[row][col] = 0
-            if (isThereMoreThanOneSolution() != 1) {
-                grid[row][col] = value_backup
-                println("row: $row, col: $col, solutions: $solutionCounter, value: $value_backup")
-                return false
-            }
-            return true
+        value_backup = grid[row][col]
+        grid[row][col] = 0
+        val solutionCount = isThereMoreThanOneSolution()
+        if (solutionCount != 1) {
+            grid[row][col] = value_backup
+            if(solutionCount == 0) removedCells--
+            return false
         }
-    }
-
-    //TODO this is wrong. create new recursive solver that solves and counts possible solutions
-    fun checkCellSolutions(): Boolean {
-        var counter: Int
-        for (i in 0 until 9) {
-            for (j in 0 until 9) {
-                if (grid[i][j] == 0) {
-                    counter = 0
-                    for (n in 0 until 9) {
-                        if (isSafe(i, j, n + 1)) {
-                            counter++
-                            if (counter > 2) {
-                                return false
-                            }
-                        }
-                    }
-                    if(counter == 0){
-                        return false
-                    }
-                }
-            }
-        }
+        removedCells++
         return true
+
     }
 
     fun isThereMoreThanOneSolution(): Int{
@@ -259,7 +227,6 @@ class MySudoku {
         for (i in 0 until grid.size) {   // Iterate through each column
             for (j in 0 until grid.size) {   // Iterate through each row
                 if (grid[i][j] == 0) {    // Check if cell is empty, otherwise iterate to next cell
-                    val rn = generateRow()
                     for (n in 0 until grid.size) { // Go through numbers 1-9 in the cell
                         if (isSafe(i, j, n+1)) { // Check if number is safe in this cell
                             grid[i][j] =
@@ -278,7 +245,8 @@ class MySudoku {
         }
         // Base case: If every cell in the grid is not 0, return true.
         solutionCounter++
-        if(grid[lastEmptyCell[0]][lastEmptyCell[1]] == 9){ //Since it iterates through each cell going from 1-9. It must then have
+        if(grid[lastEmptyCell[0]][lastEmptyCell[1]] == 9){
+            //Since it iterates through each cell going from 1-9. It must then have
             // checked all possible permutations of the board when the last cell in the grid is
             // equal to nine
             return true
@@ -319,5 +287,17 @@ class MySudoku {
             }
         }
         return true
+    }
+
+    private fun actualClues(): Int{
+        var cluesCounter = 0
+        for (i in 0 until 9){
+            for (j in 0 until 9){
+                if(grid[i][j] != 0){
+                    cluesCounter++
+                }
+            }
+        }
+        return cluesCounter
     }
 }

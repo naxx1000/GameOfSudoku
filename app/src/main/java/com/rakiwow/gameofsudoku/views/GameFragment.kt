@@ -26,8 +26,6 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     var colCtx: Int = 0
     lateinit var cellCtx: TextView
     var game: Array<IntArray> = Array(9) { IntArray(9) }
-    //Will contain the finished version of the current grid, to compare later when the player has finished
-    var initGame: Array<IntArray> = Array(9) { IntArray(9) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -174,7 +172,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         launch {
             // Difficulties range from 0-10
             //TODO weird pattern at easier difficulties
-            game = sudoku.createGame(0)
+            game = sudoku.createGame(10)
         }
     }
 
