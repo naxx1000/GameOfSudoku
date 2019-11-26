@@ -4,11 +4,13 @@ import java.util.*
 
 class MySudoku {
 
-    val rand: Random = Random()
+    var solutionCounter = 0
+    val rand: Random = Random(523432)
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
     //Will contain the finished version of the current grid, to compare later when the player has finished
     var initGrid: Array<IntArray> = Array(9) { IntArray(9) }
+    lateinit var lastEmptyCell: IntArray
 
     fun generateRow(): List<Int> {
         val row = ArrayList<Int>(9)
@@ -40,38 +42,48 @@ class MySudoku {
         }
         var grid_hardest: Array<IntArray> = Array(9) { IntArray(9) }
         var maxRemovedCellNumber = 0
-        // A grid with at least 4 less than the maximum amount of removed cells is returned
-        while (maxRemovedCellNumber < maxRemovedCells - 4) {
-            // Create n games and find the hardest that matches the difficulty criteria
-            for (i in 0 until 1000) {
-                initGame()
-                removedCells = 0
 
-                //Generate random row
-                val rn = generateRow()
-                loop@for (j in 0 until 9){ //Iterate through all 81 cells
-                    for (k in 0 until 9){
-                        //Remove random cells based on the random 9 numbers from 'rn'
-                        if(removeCellNumber(rn[j] - 1,rn[k] - 1)){
-                            removedCells++
-                            // Ensures that not too many cells get removed, based on the difficulty
-                            // of the puzzle.
-                            if(removedCells >= maxRemovedCells){
-                                break@loop // Breaks the outer loop, appropriately named 'loop'
-                            }
-                        }
+        initGame()
+        removedCells = 0
+
+        //Generate random row
+        val rn = generateRow()
+
+        loop@ for (i in 0 until 9) { //Iterate through all 81 cells
+            for (j in 0 until 9) {
+                //Remove random cells based on the random 9 numbers from 'rn'
+                if (removeCellNumber(rn[i] - 1, rn[j] - 1)) {
+                    removedCells++
+                    // Ensures that not too many cells get removed, based on the difficulty
+                    // of the puzzle.
+                    if (removedCells >= maxRemovedCells) {
+                        break@loop // Breaks the outer loop, appropriately named 'loop'
                     }
-                }
+                }/*
+                if (removeCellNumber(8 - rn[i] + 1, 8 - rn[j] + 1)){
+                    removedCells++
+                    // Ensures that not too many cells get removed, based on the difficulty
+                    // of the puzzle.
+                    if (removedCells >= maxRemovedCells) {
+                        break@loop // Breaks the outer loop, appropriately named 'loop'
+                    }
+                }*/
+            }
 
-                if (maxRemovedCellNumber < removedCells) {
-                    maxRemovedCellNumber = removedCells
-                    grid_hardest = grid
-                }
+            if (maxRemovedCellNumber <= removedCells) {
+                maxRemovedCellNumber = removedCells
+                grid_hardest = grid
             }
         }
+
         println("Clues: " + (81 - maxRemovedCellNumber).toString())
         println("Removed cells: " + maxRemovedCellNumber.toString())
         return grid_hardest
+    }
+
+    fun insertGrid(arrArr: Array<IntArray>){
+        grid = arrArr
+        lastEmptyCell = findLastEmptyCell()
     }
 
     private fun initGame() {
@@ -203,30 +215,87 @@ class MySudoku {
         while (true) {
             value_backup = grid[row][col]
             grid[row][col] = 0
-            for (i in 0 until 9){
-                for (j in 0 until 9){
-                    if (!checkCellSolutions(i, j)) {
-                        grid[row][col] = value_backup
-                        return false
-                    }
-                }
+            if (isThereMoreThanOneSolution() != 1) {
+                grid[row][col] = value_backup
+                println("row: $row, col: $col, solutions: $solutionCounter, value: $value_backup")
+                return false
             }
             return true
         }
     }
 
-    fun checkCellSolutions(row: Int, col: Int): Boolean {
-        var counter = 0
+    //TODO this is wrong. create new recursive solver that solves and counts possible solutions
+    fun checkCellSolutions(): Boolean {
+        var counter: Int
         for (i in 0 until 9) {
-            if (isSafe(row, col, i)) {
-                counter++
-                if (counter > 2) {
-                    // Returns false if more than two solutions are found
-                    return false
+            for (j in 0 until 9) {
+                if (grid[i][j] == 0) {
+                    counter = 0
+                    for (n in 0 until 9) {
+                        if (isSafe(i, j, n + 1)) {
+                            counter++
+                            if (counter > 2) {
+                                return false
+                            }
+                        }
+                    }
+                    if(counter == 0){
+                        return false
+                    }
                 }
             }
         }
         return true
+    }
+
+    fun isThereMoreThanOneSolution(): Int{
+        solutionCounter = 0
+        lastEmptyCell = findLastEmptyCell()
+        solutionCounter()
+        return solutionCounter
+    }
+
+    private fun solutionCounter(): Boolean {
+        for (i in 0 until grid.size) {   // Iterate through each column
+            for (j in 0 until grid.size) {   // Iterate through each row
+                if (grid[i][j] == 0) {    // Check if cell is empty, otherwise iterate to next cell
+                    val rn = generateRow()
+                    for (n in 0 until grid.size) { // Go through numbers 1-9 in the cell
+                        if (isSafe(i, j, n+1)) { // Check if number is safe in this cell
+                            grid[i][j] =
+                                n+1 // If number is safe in the cell, cell is assigned the number
+                            if (solutionCounter()) { // If child is true, return true to root
+
+                            } else {              // If child has is false, set cell to zero
+                                grid[i][j] = 0
+                            }
+                        }
+                    }
+                    // Return false and go to previous cell
+                    return false
+                }
+            }
+        }
+        // Base case: If every cell in the grid is not 0, return true.
+        solutionCounter++
+        if(grid[lastEmptyCell[0]][lastEmptyCell[1]] == 9){ //Since it iterates through each cell going from 1-9. It must then have
+            // checked all possible permutations of the board when the last cell in the grid is
+            // equal to nine
+            return true
+        }
+        //if(solutionCounter > 1) return true
+        return false
+    }
+
+    private fun findLastEmptyCell(): IntArray{
+        for (i in 0 until 9){
+            for (j in 0 until 9){
+                if(grid[8-i][8-j] == 0){
+                    return intArrayOf(8-i,8-j)
+                }
+            }
+        }
+        return intArrayOf(8,8)
     }
 
     fun validateBoard(board: Array<IntArray>): Boolean {
@@ -243,10 +312,10 @@ class MySudoku {
         return true
     }
 
-    fun isGridFilled(board: Array<IntArray>): Boolean{
-        for (i in 0 until 9){
-            for (j in 0 until 9){
-                if(board[i][j] == 0) return false
+    fun isGridFilled(board: Array<IntArray>): Boolean {
+        for (i in 0 until 9) {
+            for (j in 0 until 9) {
+                if (board[i][j] == 0) return false
             }
         }
         return true
