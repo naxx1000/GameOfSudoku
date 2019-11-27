@@ -10,7 +10,6 @@ import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
-import kotlinx.android.synthetic.main.activity_main.main_constraint_layout
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 
@@ -199,6 +198,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         if(sudoku.isGridFilled(game)){
             if (sudoku.validateBoard(game)) {
                 main_constraint_layout.setBackgroundColor(Color.GREEN)
+                stopWatchTimer.cancel()
             } else {
                 main_constraint_layout.setBackgroundColor(Color.RED)
             }

@@ -3,8 +3,6 @@ package com.rakiwow.gameofsudoku
 import com.rakiwow.gameofsudoku.utils.MySudoku
 import org.junit.Test
 
-import org.junit.Assert.*
-
 class ExampleUnitTest {
 
     val sudoku = MySudoku()
@@ -13,7 +11,7 @@ class ExampleUnitTest {
     // This test creates a sudoku grid and prints it
     @Test
     fun gridHasOneSolution() {
-        grid = sudoku.createGame(10)
+        grid = sudoku.createGame(11)
         sudoku.printGame(grid)
     }
 }

@@ -5,7 +5,7 @@ import java.util.*
 class MySudoku {
 
     var solutionCounter = 0
-    val rand: Random = Random()
+    val rand: Random = Random(2345)
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
     var oneDimList: ArrayList<String> = ArrayList(81)
@@ -19,10 +19,11 @@ class MySudoku {
         "7,1","7,2","7,3","7,4","7,5","7,6","7,7","7,8","7,9",
         "8,1","8,2","8,3","8,4","8,5","8,6","8,7","8,8","8,9",
         "9,1","9,2","9,3","9,4","9,5","9,6","9,7","9,8","9,9"
-    )
+    ) //matrix of possible cell locations in a grid
 
     lateinit var lastEmptyCell: IntArray
 
+    // Generates a random row of unique numbers from 1-9, to ensure the randomness of the sudoku cells
     fun generateRow(): List<Int> {
         val row = ArrayList<Int>(9)
         while (row.size < 9) {
@@ -35,8 +36,8 @@ class MySudoku {
     }
 
     fun createGame(difficulty: Int): Array<IntArray> {
-        var maxRemovedCells: Int
-        when (difficulty) {
+        val maxRemovedCells: Int
+        when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
             0 -> maxRemovedCells = 40
             1 -> maxRemovedCells = 42
             2 -> maxRemovedCells = 44
@@ -48,32 +49,48 @@ class MySudoku {
             8 -> maxRemovedCells = 54
             9 -> maxRemovedCells = 55
             10 -> maxRemovedCells = 56
-            404 -> maxRemovedCells = 3 //For debugging
+            404 -> maxRemovedCells = 1 //For debugging
             else -> maxRemovedCells = 58
         }
 
-        loop@ for (n in 0 until 100){
+        //Variable for the grid with the lowest amount of clues that gets created in the 'improveUpon' loop
+        var gridHardest = Array(9) { IntArray(9)}
+        var cluesCountHardestGrid = 81 //Contains the amount of clues found in the hardest grid
+
+        improveUpon@ for (n in 0 until 10){
             initGame()
             removedCells = 0
 
             for (i in 0 until 81){
                 oneDimList.add(oneDimArr[i])
             }
+
             oneDimList.shuffle()
-            for (i in 0 until 81){
-                if(removeCellNumber(oneDimList[i].split(",")[0].toInt() - 1, oneDimList[i].split(",")[1].toInt() - 1)){
+            loop@ for (i in 0 until 81){
+                if(removeCellNumber(oneDimList[i].split(",")[0].toInt() - 1,
+                        oneDimList[i].split(",")[1].toInt() - 1)){
+                    //Breaks loop if the maximum amount of cells to remove is surpassed
                     if(actualClues() <= 81-maxRemovedCells) break@loop
                 }
-                if(removeCellNumber(8 - oneDimList[i].split(",")[0].toInt() + 1, 8 - oneDimList[i].split(",")[1].toInt() + 1)){
+                //Mirroring. This needs to be optimized before implemented
+                /*if(removeCellNumber(8 - oneDimList[i].split(",")[0].toInt() + 1,
+                        8 - oneDimList[i].split(",")[1].toInt() + 1)){
+                    //Breaks loop if the maximum amount of cells to remove is surpassed
                     if(actualClues() <= 81-maxRemovedCells) break@loop
-                }
+                }*/
+            }
+
+            if(actualClues() < cluesCountHardestGrid){
+                cluesCountHardestGrid = actualClues()
+                gridHardest = grid
+                if(actualClues() <= 81-maxRemovedCells) break@improveUpon
             }
         }
 
-
-        println("Clues: " + actualClues())
-        println("Removed cells: " + (81 - actualClues()))
-        return grid
+        println("Clues: " + cluesCountHardestGrid)
+        println("Removed cells: " + (81 - cluesCountHardestGrid))
+        println("Actual clues: " + actualClues())
+        return gridHardest
     }
 
     private fun initGame() {
@@ -245,16 +262,19 @@ class MySudoku {
         }
         // Base case: If every cell in the grid is not 0, return true.
         solutionCounter++
-        if(grid[lastEmptyCell[0]][lastEmptyCell[1]] == 9){
+        /*if(grid[lastEmptyCell[0]][lastEmptyCell[1]] == 9){
             //Since it iterates through each cell going from 1-9. It must then have
             // checked all possible permutations of the board when the last cell in the grid is
             // equal to nine
             return true
-        }
+        }*/
         //if(solutionCounter > 1) return true
         return false
     }
 
+    //Finds the last empty cell in the grid. This is useful for the solution counter function,
+    // which will stop itself as soon as it has been through every empty cell, since the last
+    // empty cell will contain 9
     private fun findLastEmptyCell(): IntArray{
         for (i in 0 until 9){
             for (j in 0 until 9){
@@ -266,8 +286,8 @@ class MySudoku {
         return intArrayOf(8,8)
     }
 
+    //Check the whole board if it follows the rules of Sudoku. Returns true if valid
     fun validateBoard(board: Array<IntArray>): Boolean {
-        //TODO compare with previous finished grid instead
         grid = board
         for (i in 0 until 9) {
             for (j in 0 until 9) {
@@ -280,6 +300,7 @@ class MySudoku {
         return true
     }
 
+    //Returns true if the whole board is filled with numbers
     fun isGridFilled(board: Array<IntArray>): Boolean {
         for (i in 0 until 9) {
             for (j in 0 until 9) {
@@ -289,6 +310,7 @@ class MySudoku {
         return true
     }
 
+    //Counts the amount of cells that are not zero (Filled cells)
     private fun actualClues(): Int{
         var cluesCounter = 0
         for (i in 0 until 9){
