@@ -10,6 +10,8 @@ import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
+import androidx.core.content.ContextCompat
+import com.rakiwow.gameofsudoku.utils.CellTextView
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 
@@ -23,7 +25,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     var stopWatchMinutes: Int = 0
     var rowCtx: Int = 0
     var colCtx: Int = 0
-    lateinit var cellCtx: TextView
+    lateinit var cellCtx: CellTextView
     var game: Array<IntArray> = Array(9) { IntArray(9) }
 
     override fun onCreateView(
@@ -46,7 +48,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         }
     }
 
-    //TODO Lock initial clues of the sudoku puzzle, and also change the color of them
+    //Inserts the values from the grid into each Cell Text View
     fun setUpGrid(grid: Array<IntArray>) {
         //Row 1
         initCell(cell_11, grid[0][0])
@@ -175,22 +177,41 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         }
     }
 
-    fun fragmentIngress() {
+    fun fragmentIngress(isMark: Boolean) {
         val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+        //Add arguments to the fragment, so it can detect if it is marking numbers or not
+        val args = Bundle()
+        args.putBoolean("isMark", isMark)
+        args.putIntegerArrayList("markList", cellCtx.markList)
+        numberFragment.arguments = args
         fragmentTransaction.add(R.id.fragmentViewGroup, numberFragment)
         fragmentTransaction.commit()
         main_constraint_layout.setBackgroundColor(resources.getColor(R.color.main_background))
     }
 
-    fun fragmentEgress(number: Int) {
+    fun fragmentEgress(number: Int, isMark: Boolean?) {
 
-        if(number == 0){
-            game[rowCtx][colCtx] = number
-            cellCtx.text = " "
-        }else if(number in 0..9) {
-            game[rowCtx][colCtx] = number
-            cellCtx.text = "$number"
+        if(isMark == null || isMark){
+            if(number == 0){
+                cellCtx.removeAllMarks()
+            }else if(number in 1..9){
+                if(cellCtx.hasMark(number)){
+                    cellCtx.removeMark(number)
+                }else{
+                    println("mark added")
+                    cellCtx.addMark(number)
+                }
+            }
+        }else{
+            if(number == 0){
+                game[rowCtx][colCtx] = number
+                cellCtx.text = " "
+            }else if(number in 1..9) {
+                game[rowCtx][colCtx] = number
+                cellCtx.text = "$number"
+                cellCtx.removeAllMarks()
+            }
         }
 
         childFragmentManager.beginTransaction().remove(numberFragment).commit()
@@ -205,108 +226,125 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         }
     }
 
-    override fun onNumberSelect(number: Int) {
-        fragmentEgress(number)
+    override fun onNumberSelect(number: Int, isMark: Boolean?) {
+        fragmentEgress(number, isMark)
     }
 
     fun sudokuOnClickListeners() {
         //TODO "Fragment already added" error when tapping fast on a cell
-        cell_11.setOnClickListener { submitCellNumber(it, 1, 1) }
-        cell_12.setOnClickListener { submitCellNumber(it, 2, 1) }
-        cell_13.setOnClickListener { submitCellNumber(it, 3, 1) }
-        cell_14.setOnClickListener { submitCellNumber(it, 4, 1) }
-        cell_15.setOnClickListener { submitCellNumber(it, 5, 1) }
-        cell_16.setOnClickListener { submitCellNumber(it, 6, 1) }
-        cell_17.setOnClickListener { submitCellNumber(it, 7, 1) }
-        cell_18.setOnClickListener { submitCellNumber(it, 8, 1) }
-        cell_19.setOnClickListener { submitCellNumber(it, 9, 1) }
-        cell_21.setOnClickListener { submitCellNumber(it, 1, 2) }
-        cell_22.setOnClickListener { submitCellNumber(it, 2, 2) }
-        cell_23.setOnClickListener { submitCellNumber(it, 3, 2) }
-        cell_24.setOnClickListener { submitCellNumber(it, 4, 2) }
-        cell_25.setOnClickListener { submitCellNumber(it, 5, 2) }
-        cell_26.setOnClickListener { submitCellNumber(it, 6, 2) }
-        cell_27.setOnClickListener { submitCellNumber(it, 7, 2) }
-        cell_28.setOnClickListener { submitCellNumber(it, 8, 2) }
-        cell_29.setOnClickListener { submitCellNumber(it, 9, 2) }
-        cell_31.setOnClickListener { submitCellNumber(it, 1, 3) }
-        cell_32.setOnClickListener { submitCellNumber(it, 2, 3) }
-        cell_33.setOnClickListener { submitCellNumber(it, 3, 3) }
-        cell_34.setOnClickListener { submitCellNumber(it, 4, 3) }
-        cell_35.setOnClickListener { submitCellNumber(it, 5, 3) }
-        cell_36.setOnClickListener { submitCellNumber(it, 6, 3) }
-        cell_37.setOnClickListener { submitCellNumber(it, 7, 3) }
-        cell_38.setOnClickListener { submitCellNumber(it, 8, 3) }
-        cell_39.setOnClickListener { submitCellNumber(it, 9, 3) }
-        cell_41.setOnClickListener { submitCellNumber(it, 1, 4) }
-        cell_42.setOnClickListener { submitCellNumber(it, 2, 4) }
-        cell_43.setOnClickListener { submitCellNumber(it, 3, 4) }
-        cell_44.setOnClickListener { submitCellNumber(it, 4, 4) }
-        cell_45.setOnClickListener { submitCellNumber(it, 5, 4) }
-        cell_46.setOnClickListener { submitCellNumber(it, 6, 4) }
-        cell_47.setOnClickListener { submitCellNumber(it, 7, 4) }
-        cell_48.setOnClickListener { submitCellNumber(it, 8, 4) }
-        cell_49.setOnClickListener { submitCellNumber(it, 9, 4) }
-        cell_51.setOnClickListener { submitCellNumber(it, 1, 5) }
-        cell_52.setOnClickListener { submitCellNumber(it, 2, 5) }
-        cell_53.setOnClickListener { submitCellNumber(it, 3, 5) }
-        cell_54.setOnClickListener { submitCellNumber(it, 4, 5) }
-        cell_55.setOnClickListener { submitCellNumber(it, 5, 5) }
-        cell_56.setOnClickListener { submitCellNumber(it, 6, 5) }
-        cell_57.setOnClickListener { submitCellNumber(it, 7, 5) }
-        cell_58.setOnClickListener { submitCellNumber(it, 8, 5) }
-        cell_59.setOnClickListener { submitCellNumber(it, 9, 5) }
-        cell_61.setOnClickListener { submitCellNumber(it, 1, 6) }
-        cell_62.setOnClickListener { submitCellNumber(it, 2, 6) }
-        cell_63.setOnClickListener { submitCellNumber(it, 3, 6) }
-        cell_64.setOnClickListener { submitCellNumber(it, 4, 6) }
-        cell_65.setOnClickListener { submitCellNumber(it, 5, 6) }
-        cell_66.setOnClickListener { submitCellNumber(it, 6, 6) }
-        cell_67.setOnClickListener { submitCellNumber(it, 7, 6) }
-        cell_68.setOnClickListener { submitCellNumber(it, 8, 6) }
-        cell_69.setOnClickListener { submitCellNumber(it, 9, 6) }
-        cell_71.setOnClickListener { submitCellNumber(it, 1, 7) }
-        cell_72.setOnClickListener { submitCellNumber(it, 2, 7) }
-        cell_73.setOnClickListener { submitCellNumber(it, 3, 7) }
-        cell_74.setOnClickListener { submitCellNumber(it, 4, 7) }
-        cell_75.setOnClickListener { submitCellNumber(it, 5, 7) }
-        cell_76.setOnClickListener { submitCellNumber(it, 6, 7) }
-        cell_77.setOnClickListener { submitCellNumber(it, 7, 7) }
-        cell_78.setOnClickListener { submitCellNumber(it, 8, 7) }
-        cell_79.setOnClickListener { submitCellNumber(it, 9, 7) }
-        cell_81.setOnClickListener { submitCellNumber(it, 1, 8) }
-        cell_82.setOnClickListener { submitCellNumber(it, 2, 8) }
-        cell_83.setOnClickListener { submitCellNumber(it, 3, 8) }
-        cell_84.setOnClickListener { submitCellNumber(it, 4, 8) }
-        cell_85.setOnClickListener { submitCellNumber(it, 5, 8) }
-        cell_86.setOnClickListener { submitCellNumber(it, 6, 8) }
-        cell_87.setOnClickListener { submitCellNumber(it, 7, 8) }
-        cell_88.setOnClickListener { submitCellNumber(it, 8, 8) }
-        cell_89.setOnClickListener { submitCellNumber(it, 9, 8) }
-        cell_91.setOnClickListener { submitCellNumber(it, 1, 9) }
-        cell_92.setOnClickListener { submitCellNumber(it, 2, 9) }
-        cell_93.setOnClickListener { submitCellNumber(it, 3, 9) }
-        cell_94.setOnClickListener { submitCellNumber(it, 4, 9) }
-        cell_95.setOnClickListener { submitCellNumber(it, 5, 9) }
-        cell_96.setOnClickListener { submitCellNumber(it, 6, 9) }
-        cell_97.setOnClickListener { submitCellNumber(it, 7, 9) }
-        cell_98.setOnClickListener { submitCellNumber(it, 8, 9) }
-        cell_99.setOnClickListener { submitCellNumber(it, 9, 9) }
+        addCellListeners(cell_11, 1, 1)
+        addCellListeners(cell_12, 2, 1)
+        addCellListeners(cell_13, 3, 1)
+        addCellListeners(cell_14, 4, 1)
+        addCellListeners(cell_15, 5, 1)
+        addCellListeners(cell_16, 6, 1)
+        addCellListeners(cell_17, 7, 1)
+        addCellListeners(cell_18, 8, 1)
+        addCellListeners(cell_19, 9, 1)
+        addCellListeners(cell_21, 1, 2)
+        addCellListeners(cell_22, 2, 2)
+        addCellListeners(cell_23, 3, 2)
+        addCellListeners(cell_24, 4, 2)
+        addCellListeners(cell_25, 5, 2)
+        addCellListeners(cell_26, 6, 2)
+        addCellListeners(cell_27, 7, 2)
+        addCellListeners(cell_28, 8, 2)
+        addCellListeners(cell_29, 9, 2)
+        addCellListeners(cell_31, 1, 3)
+        addCellListeners(cell_32, 2, 3)
+        addCellListeners(cell_33, 3, 3)
+        addCellListeners(cell_34, 4, 3)
+        addCellListeners(cell_35, 5, 3)
+        addCellListeners(cell_36, 6, 3)
+        addCellListeners(cell_37, 7, 3)
+        addCellListeners(cell_38, 8, 3)
+        addCellListeners(cell_39, 9, 3)
+        addCellListeners(cell_41, 1, 4)
+        addCellListeners(cell_42, 2, 4)
+        addCellListeners(cell_43, 3, 4)
+        addCellListeners(cell_44, 4, 4)
+        addCellListeners(cell_45, 5, 4)
+        addCellListeners(cell_46, 6, 4)
+        addCellListeners(cell_47, 7, 4)
+        addCellListeners(cell_48, 8, 4)
+        addCellListeners(cell_49, 9, 4)
+        addCellListeners(cell_51, 1, 5)
+        addCellListeners(cell_52, 2, 5)
+        addCellListeners(cell_53, 3, 5)
+        addCellListeners(cell_54, 4, 5)
+        addCellListeners(cell_55, 5, 5)
+        addCellListeners(cell_56, 6, 5)
+        addCellListeners(cell_57, 7, 5)
+        addCellListeners(cell_58, 8, 5)
+        addCellListeners(cell_59, 9, 5)
+        addCellListeners(cell_61, 1, 6)
+        addCellListeners(cell_62, 2, 6)
+        addCellListeners(cell_63, 3, 6)
+        addCellListeners(cell_64, 4, 6)
+        addCellListeners(cell_65, 5, 6)
+        addCellListeners(cell_66, 6, 6)
+        addCellListeners(cell_67, 7, 6)
+        addCellListeners(cell_68, 8, 6)
+        addCellListeners(cell_69, 9, 6)
+        addCellListeners(cell_71, 1, 7)
+        addCellListeners(cell_72, 2, 7)
+        addCellListeners(cell_73, 3, 7)
+        addCellListeners(cell_74, 4, 7)
+        addCellListeners(cell_75, 5, 7)
+        addCellListeners(cell_76, 6, 7)
+        addCellListeners(cell_77, 7, 7)
+        addCellListeners(cell_78, 8, 7)
+        addCellListeners(cell_79, 9, 7)
+        addCellListeners(cell_81, 1, 8)
+        addCellListeners(cell_82, 2, 8)
+        addCellListeners(cell_83, 3, 8)
+        addCellListeners(cell_84, 4, 8)
+        addCellListeners(cell_85, 5, 8)
+        addCellListeners(cell_86, 6, 8)
+        addCellListeners(cell_87, 7, 8)
+        addCellListeners(cell_88, 8, 8)
+        addCellListeners(cell_89, 9, 8)
+        addCellListeners(cell_91, 1, 9)
+        addCellListeners(cell_92, 2, 9)
+        addCellListeners(cell_93, 3, 9)
+        addCellListeners(cell_94, 4, 9)
+        addCellListeners(cell_95, 5, 9)
+        addCellListeners(cell_96, 6, 9)
+        addCellListeners(cell_97, 7, 9)
+        addCellListeners(cell_98, 8, 9)
+        addCellListeners(cell_99, 9, 9)
     }
 
-    fun submitCellNumber(view: View, row: Int, col: Int) {
+    fun addCellListeners(view: View, row: Int, col: Int){
+        view.setOnClickListener { submitCellNumber(it, row, col, false) }
+        view.setOnLongClickListener { submitCellMark(it, row, col, true) }
+    }
+
+    fun submitCellNumber(view: View, row: Int, col: Int, isMark: Boolean) {
         rowCtx = row - 1
         colCtx = col - 1
         cellCtx = activity!!.findViewById(view.id)
         cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
-        fragmentIngress()
+        fragmentIngress(isMark)
     }
 
-    fun initCell(tv: TextView, n: Int) {
+    //A copy of submitCellNumber above, but needs to return true so the onClick does not fire
+    fun submitCellMark(view: View, row: Int, col: Int, isMark: Boolean): Boolean {
+        rowCtx = row - 1
+        colCtx = col - 1
+        cellCtx = activity!!.findViewById(view.id)
+        cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
+        fragmentIngress(isMark)
+        return true
+    }
+
+    fun initCell(tv: CellTextView, n: Int) {
         tv.setTextColor(Color.BLACK)
+        tv.removeAllMarks()
         if (n > 0) {
             tv.setBackgroundColor(resources.getColor(R.color.cellClue))
             tv.setOnClickListener { } //This disables the onClickListener
+            tv.setOnLongClickListener { false }
             tv.text = n.toString()
         } else {
             tv.setBackgroundColor(resources.getColor(R.color.cellDefault))

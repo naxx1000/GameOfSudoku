@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         drawer = findViewById(R.id.main_activity_drawer_layout)
-        drawer.openDrawer(GravityCompat.START)
 
         drawer_button_play.setOnClickListener {
             if(drawer.isDrawerOpen(GravityCompat.START)){
