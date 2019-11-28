@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.rakiwow.gameofsudoku.utils.MainDrawerContent xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@color/colorAccent"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/drawer_button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_continue"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_button_records"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/drawer_button_records"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_records"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_button_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawer_button_play" />
+
+    <Button
+        android:id="@+id/drawer_button_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_sudoku_history"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_button_about"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawer_button_records" />
+
+    <Button
+        android:id="@+id/drawer_button_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawer_button_history" />
+
+</com.rakiwow.gameofsudoku.utils.MainDrawerContent>

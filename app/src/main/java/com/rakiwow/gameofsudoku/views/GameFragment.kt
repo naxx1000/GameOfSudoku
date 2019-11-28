@@ -171,7 +171,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         launch {
             // Difficulties range from 0-10
             //TODO weird pattern at easier difficulties
-            game = sudoku.createGame(10)
+            game = sudoku.createGame(0)
         }
     }
 

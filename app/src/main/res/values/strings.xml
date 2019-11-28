@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_continue">Play/Continue</string>
+    <string name="my_records">My records</string>
+    <string name="my_sudoku_history">My Sudoku history</string>
+    <string name="about">About</string>
 </resources>
