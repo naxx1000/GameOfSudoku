@@ -15,11 +15,11 @@
         android:layout_height="wrap_content"
         android:background="@color/textColor"
         app:columnCount="3"
-        app:rowCount="3"
-        app:layout_constraintBottom_toTopOf="@+id/button_generate"
+        app:layout_constraintBottom_toBottomOf="@+id/fragmentViewGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:rowCount="3">
 
 
         <!-- Region 1 -->
@@ -987,18 +987,6 @@
         </androidx.gridlayout.widget.GridLayout>
 
     </androidx.gridlayout.widget.GridLayout>
-
-    <Button
-        android:id="@+id/button_generate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Generate new puzzle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/fragmentViewGroup"

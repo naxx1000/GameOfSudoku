@@ -7,5 +7,14 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.rakiwow.gameofsudoku.views.GameFragment"
-        android:label="GameFragment" />
+        android:label="GameFragment" >
+        <argument
+            android:name="navGameDifficulty"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <action
+        android:id="@+id/newGameFragment"
+        app:destination="@id/gameFragment"
+        app:popUpTo="@+id/gameFragment" />
 </navigation>

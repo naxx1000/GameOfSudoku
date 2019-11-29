@@ -5,7 +5,7 @@ import java.util.*
 class MySudoku {
 
     var solutionCounter = 0
-    val rand: Random = Random(2345)
+    val rand: Random = Random()
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
     var oneDimList: ArrayList<String> = ArrayList(81)
@@ -39,16 +39,10 @@ class MySudoku {
         val maxRemovedCells: Int
         when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
             0 -> maxRemovedCells = 40
-            1 -> maxRemovedCells = 42
-            2 -> maxRemovedCells = 44
-            3 -> maxRemovedCells = 46
-            4 -> maxRemovedCells = 48
-            5 -> maxRemovedCells = 50
-            6 -> maxRemovedCells = 52
-            7 -> maxRemovedCells = 53
-            8 -> maxRemovedCells = 54
-            9 -> maxRemovedCells = 55
-            10 -> maxRemovedCells = 56
+            1 -> maxRemovedCells = 44
+            2 -> maxRemovedCells = 48
+            3 -> maxRemovedCells = 52
+            4 -> maxRemovedCells = 56
             404 -> maxRemovedCells = 1 //For debugging
             else -> maxRemovedCells = 58
         }

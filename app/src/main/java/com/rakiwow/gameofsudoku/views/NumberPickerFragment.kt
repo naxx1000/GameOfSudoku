@@ -1,6 +1,5 @@
 package com.rakiwow.gameofsudoku.views
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,7 @@ class NumberPickerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        motionLayout.transitionToEnd()
+        motion_numbers_layout.transitionToEnd()
 
         val isMark = arguments?.getBoolean("isMark", false)
         val markList = arguments?.getIntegerArrayList("markList")

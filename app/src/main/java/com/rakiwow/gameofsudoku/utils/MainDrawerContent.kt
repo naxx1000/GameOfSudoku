@@ -5,6 +5,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.drawerlayout.widget.DrawerLayout
+import com.rakiwow.gameofsudoku.R
+import kotlinx.android.synthetic.main.content_main_drawer.view.*
+
 
 class MainDrawerContent @kotlin.jvm.JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -19,7 +22,7 @@ class MainDrawerContent @kotlin.jvm.JvmOverloads constructor(
     }
 
     override fun onDrawerClosed(drawerView: View) {
-
+        motion_drawer_menu.setTransition(R.id.start, R.id.end)
     }
 
     override fun onDrawerOpened(drawerView: View) {

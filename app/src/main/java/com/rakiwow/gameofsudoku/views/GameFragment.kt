@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
-import androidx.core.content.ContextCompat
 import com.rakiwow.gameofsudoku.utils.CellTextView
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
@@ -39,13 +37,11 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createPuzzle()
+        val gameDifficulty = arguments!!.getInt("difficulty", 0)
+
+        createPuzzle(gameDifficulty)
 
         startStopWatch()
-
-        button_generate.setOnClickListener {
-            createPuzzle()
-        }
     }
 
     //Inserts the values from the grid into each Cell Text View
@@ -151,29 +147,26 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
 
     }
 
-    fun createPuzzle() {
+    fun createPuzzle(difficulty: Int) {
         GlobalScope.launch(Dispatchers.Main) {
-            progressBar.visibility = View.VISIBLE
-            button_generate.visibility = View.INVISIBLE
+            progressBar?.visibility = View.VISIBLE
             val asyncTask = async(Dispatchers.IO) {
-                createPuzzleBackground()
+                createPuzzleBackground(difficulty)
             }
             asyncTask.await()
-            progressBar.visibility = View.GONE
-            button_generate.visibility = View.VISIBLE
+            progressBar?.visibility = View.GONE
             sudokuOnClickListeners()
             setUpGrid(game)
             stopWatchSeconds = 0
             stopWatchMinutes = 0
-            textViewTimer.text = "00:00"
+            textViewTimer?.text = "00:00"
         }
     }
 
-    suspend fun createPuzzleBackground() = coroutineScope {
+    suspend fun createPuzzleBackground(difficulty: Int) = coroutineScope {
         launch {
             // Difficulties range from 0-10
-            //TODO weird pattern at easier difficulties
-            game = sudoku.createGame(0)
+            game = sudoku.createGame(difficulty)
         }
     }
 
@@ -315,9 +308,9 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         addCellListeners(cell_99, 9, 9)
     }
 
-    fun addCellListeners(view: View, row: Int, col: Int){
-        view.setOnClickListener { submitCellNumber(it, row, col, false) }
-        view.setOnLongClickListener { submitCellMark(it, row, col, true) }
+    fun addCellListeners(view: View?, row: Int, col: Int){
+        view?.setOnClickListener { submitCellNumber(it, row, col, false) }
+        view?.setOnLongClickListener { submitCellMark(it, row, col, true) }
     }
 
     fun submitCellNumber(view: View, row: Int, col: Int, isMark: Boolean) {
@@ -338,17 +331,17 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         return true
     }
 
-    fun initCell(tv: CellTextView, n: Int) {
-        tv.setTextColor(Color.BLACK)
-        tv.removeAllMarks()
+    fun initCell(tv: CellTextView?, n: Int) {
+        tv?.setTextColor(Color.BLACK)
+        tv?.removeAllMarks()
         if (n > 0) {
-            tv.setBackgroundColor(resources.getColor(R.color.cellClue))
-            tv.setOnClickListener { } //This disables the onClickListener
-            tv.setOnLongClickListener { false }
-            tv.text = n.toString()
+            tv?.setBackgroundColor(resources.getColor(R.color.cellClue))
+            tv?.setOnClickListener { } //This disables the onClickListener
+            tv?.setOnLongClickListener { false }
+            tv?.text = n.toString()
         } else {
-            tv.setBackgroundColor(resources.getColor(R.color.cellDefault))
-            tv.text = " "
+            tv?.setBackgroundColor(resources.getColor(R.color.cellDefault))
+            tv?.text = " "
         }
     }
 
@@ -373,7 +366,7 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
                     } else {
                         timerString += "$stopWatchSeconds"
                     }
-                    textViewTimer.text = timerString
+                    textViewTimer?.text = timerString
                 }
             }
             , 1000, 1000

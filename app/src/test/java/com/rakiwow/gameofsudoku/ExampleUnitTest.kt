@@ -11,7 +11,7 @@ class ExampleUnitTest {
     // This test creates a sudoku grid and prints it
     @Test
     fun gridHasOneSolution() {
-        grid = sudoku.createGame(11)
+        grid = sudoku.createGame(4)
         sudoku.printGame(grid)
     }
 }

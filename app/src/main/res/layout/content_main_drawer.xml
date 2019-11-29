@@ -1,53 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.rakiwow.gameofsudoku.utils.MainDrawerContent xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawerMenu"
+    android:id="@+id/motion_drawer_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:background="@color/colorAccent"
+    app:layoutDescription="@xml/scene_drawer_menu"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/drawer_button_play"
+        android:id="@+id/drawer_button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/play_continue"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_button_records"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/play_continue"/>
+
+    <Button
+        android:id="@+id/drawer_button_newgame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_game"/>
 
     <Button
         android:id="@+id/drawer_button_records"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_records"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_button_history"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_button_play" />
+        android:text="@string/my_records"/>
 
     <Button
         android:id="@+id/drawer_button_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_sudoku_history"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_button_about"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_button_records" />
+        android:text="@string/my_sudoku_history" />
 
     <Button
         android:id="@+id/drawer_button_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/about"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_button_history" />
+        android:text="@string/about"/>
+
+    <Button
+        android:id="@+id/drawer_diff_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm Too Young To Die" />
+
+    <Button
+        android:id="@+id/drawer_diff_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hurt Me Plenty"/>
+
+    <Button
+        android:id="@+id/drawer_diff_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ultra-Violence"/>
+
+    <Button
+        android:id="@+id/drawer_diff_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nightmare"/>
+
+    <Button
+        android:id="@+id/drawer_diff_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ultra-nightmare"/>
 
 </com.rakiwow.gameofsudoku.utils.MainDrawerContent>
