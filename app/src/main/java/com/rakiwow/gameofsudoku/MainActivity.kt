@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = nav_host_fragment.findNavController()
 
+        //Instead of onClick which causes stuttering. Do these onDrawerClosed
         val args = Bundle()
         drawer_diff_1.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
@@ -62,6 +63,12 @@ class MainActivity : AppCompatActivity() {
             navController.popBackStack()
             args.putInt("difficulty", 4)
             navController.navigate(R.id.newGameFragment, args)}
+
+        drawer_button_history.setOnClickListener {
+            drawer.closeDrawer(GravityCompat.START)
+            navController.popBackStack()
+            navController.navigate(R.id.toHistoryFragment)
+        }
     }
 
     override fun onBackPressed() {

@@ -8,6 +8,7 @@ class MySudoku {
     val rand: Random = Random()
     var removedCells = 0
     var grid: Array<IntArray> = Array(9) { IntArray(9) }
+    var unsolvedGrid: Array<IntArray> = Array(9) { IntArray(9) }
     var oneDimList: ArrayList<String> = ArrayList(81)
     var oneDimArr = arrayOf(
         "1,1","1,2","1,3","1,4","1,5","1,6","1,7","1,8","1,9",
@@ -67,11 +68,11 @@ class MySudoku {
                     if(actualClues() <= 81-maxRemovedCells) break@loop
                 }
                 //Mirroring. This needs to be optimized before implemented
-                /*if(removeCellNumber(8 - oneDimList[i].split(",")[0].toInt() + 1,
+                if(removeCellNumber(8 - oneDimList[i].split(",")[0].toInt() + 1,
                         8 - oneDimList[i].split(",")[1].toInt() + 1)){
                     //Breaks loop if the maximum amount of cells to remove is surpassed
                     if(actualClues() <= 81-maxRemovedCells) break@loop
-                }*/
+                }
             }
 
             if(actualClues() < cluesCountHardestGrid){
@@ -84,6 +85,7 @@ class MySudoku {
         println("Clues: " + cluesCountHardestGrid)
         println("Removed cells: " + (81 - cluesCountHardestGrid))
         println("Actual clues: " + actualClues())
+        unsolvedGrid = gridHardest
         return gridHardest
     }
 
@@ -93,11 +95,11 @@ class MySudoku {
     }
 
     private fun createGameRec(): Boolean {
-        for (i in 0 until grid.size) {   // Iterate through each column
-            for (j in 0 until grid.size) {   // Iterate through each row
+        for (i in 0 until 9) {   // Iterate through each column
+            for (j in 0 until 9) {   // Iterate through each row
                 if (grid[i][j] == 0) {    // Check if cell is empty, otherwise iterate to next cell
                     val rn = generateRow()
-                    for (n in 0 until grid.size) { // Go through numbers 1-9 in the cell
+                    for (n in 0 until 9) { // Go through numbers 1-9 in the cell
                         if (isSafe(i, j, rn[n])) { // Check if number is safe in this cell
                             grid[i][j] =
                                 rn[n] // If number is safe in the cell, cell is assigned the number
@@ -198,6 +200,7 @@ class MySudoku {
 
     fun resetGrid() {
         grid = Array(9) { IntArray(9) }
+        unsolvedGrid = Array(9) { IntArray(9) }
         oneDimList = ArrayList(81)
     }
 

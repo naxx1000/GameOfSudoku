@@ -997,12 +997,11 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewTimer"
+    <Chronometer
+        android:id="@+id/gameChronometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="00:00"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/mainGrid"

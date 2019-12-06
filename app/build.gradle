@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -27,15 +27,27 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+    //Lifecycle Component
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc02'
+    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-rc02"
+    //Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+    //Kotlin Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    //Motion Layout
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
-    implementation 'com.github.florent37:shapeofview:1.4.7'
+    //Room Persistence Library
+    implementation "androidx.room:room-ktx:2.2.2"
+    implementation "androidx.room:room-runtime:2.2.2"
+    kapt("androidx.room:room-compiler:2.2.2")
+    //Facebook share library
+    implementation 'com.facebook.android:facebook-share:5.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }

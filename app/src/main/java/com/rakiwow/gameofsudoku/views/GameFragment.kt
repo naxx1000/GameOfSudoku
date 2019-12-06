@@ -9,11 +9,16 @@ import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
+import android.os.SystemClock
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.CellTextView
+import com.rakiwow.gameofsudoku.viewmodel.StatsViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 
-class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
+class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     val sudoku: MySudoku = MySudoku()
     val numberFragment = NumberPickerFragment()
@@ -23,8 +28,14 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     var stopWatchMinutes: Int = 0
     var rowCtx: Int = 0
     var colCtx: Int = 0
+    var gameDifficulty = 0
+    var pauseOffset: Long = 0L
+    var hasRadialFragmentLaunched = false
+    var isChronometerRunning = false
     lateinit var cellCtx: CellTextView
+    private lateinit var statsViewModel: StatsViewModel
     var game: Array<IntArray> = Array(9) { IntArray(9) }
+    var unsolvedGame: Array<IntArray> = Array(9) { IntArray(9) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +47,15 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO save the grid, unsolvedgrid, time with savedPreferences when a cell is placed or onPause is called
 
-        val gameDifficulty = arguments!!.getInt("difficulty", 0)
+        statsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
+        gameDifficulty = arguments!!.getInt("difficulty", 0)
 
         createPuzzle(gameDifficulty)
 
-        startStopWatch()
+        initChronometer()
+        startChronometer()
     }
 
     //Inserts the values from the grid into each Cell Text View
@@ -150,6 +164,8 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     fun createPuzzle(difficulty: Int) {
         GlobalScope.launch(Dispatchers.Main) {
             progressBar?.visibility = View.VISIBLE
+            game = Array(9) { IntArray(9) }
+            unsolvedGame = Array(9) { IntArray(9) }
             val asyncTask = async(Dispatchers.IO) {
                 createPuzzleBackground(difficulty)
             }
@@ -157,9 +173,16 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
             progressBar?.visibility = View.GONE
             sudokuOnClickListeners()
             setUpGrid(game)
+            for (i in 0 until 9) {
+                for (j in 0 until 9) {
+                    unsolvedGame[i][j] =
+                        game[i][j] //unsolvedGame = game, would for some reason bind it that reference
+                }
+            }
             stopWatchSeconds = 0
             stopWatchMinutes = 0
-            textViewTimer?.text = "00:00"
+            //TODO reset chronometer here
+            gameChronometer?.text = "00:00"
         }
     }
 
@@ -184,37 +207,55 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     }
 
     fun fragmentEgress(number: Int, isMark: Boolean?) {
-
-        if(isMark == null || isMark){
-            if(number == 0){
-                cellCtx.removeAllMarks()
-            }else if(number in 1..9){
-                if(cellCtx.hasMark(number)){
-                    cellCtx.removeMark(number)
-                }else{
-                    println("mark added")
-                    cellCtx.addMark(number)
+        if (hasRadialFragmentLaunched) {
+            hasRadialFragmentLaunched = false
+            if (isMark == null || isMark) {
+                if (number == 0) {
+                    cellCtx.removeAllMarks()
+                } else if (number in 1..9) {
+                    if (cellCtx.hasMark(number)) {
+                        cellCtx.removeMark(number)
+                    } else {
+                        println("mark added")
+                        cellCtx.addMark(number)
+                    }
+                }
+            } else {
+                if (number == 0) {
+                    game[rowCtx][colCtx] = number
+                    cellCtx.text = " "
+                    addCellListeners(
+                        cellCtx,
+                        rowCtx,
+                        colCtx
+                    ) //Reapplies listeners when a number is removed from a cell
+                } else if (number in 1..9) {
+                    game[rowCtx][colCtx] = number
+                    cellCtx.text = "$number"
+                    cellCtx.removeAllMarks()
+                    cellCtx.setOnLongClickListener { false } //Removes long click listener on cell that already contains a number
                 }
             }
-        }else{
-            if(number == 0){
-                game[rowCtx][colCtx] = number
-                cellCtx.text = " "
-            }else if(number in 1..9) {
-                game[rowCtx][colCtx] = number
-                cellCtx.text = "$number"
-                cellCtx.removeAllMarks()
-            }
-        }
 
-        childFragmentManager.beginTransaction().remove(numberFragment).commit()
-        cellCtx.setBackgroundColor(resources.getColor(R.color.cellDefault))
-        if(sudoku.isGridFilled(game)){
-            if (sudoku.validateBoard(game)) {
-                main_constraint_layout.setBackgroundColor(Color.GREEN)
-                stopWatchTimer.cancel()
-            } else {
-                main_constraint_layout.setBackgroundColor(Color.RED)
+            childFragmentManager.beginTransaction().remove(numberFragment).commit()
+            cellCtx.setBackgroundColor(resources.getColor(R.color.cellDefault))
+            if (sudoku.isGridFilled(game)) {
+                if (sudoku.validateBoard(game)) {
+                    main_constraint_layout.setBackgroundColor(Color.GREEN)
+                    statsViewModel.insert(
+                        SudokuStats(
+                            0,
+                            gameDifficulty,
+                            Date().time,
+                            (SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt(),
+                            unsolvedGame
+                        )
+                    )
+                    stopWatchTimer.cancel()
+                    stopWatchTimer.purge()
+                } else {
+                    main_constraint_layout.setBackgroundColor(Color.RED)
+                }
             }
         }
     }
@@ -224,7 +265,6 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
     }
 
     fun sudokuOnClickListeners() {
-        //TODO "Fragment already added" error when tapping fast on a cell
         addCellListeners(cell_11, 1, 1)
         addCellListeners(cell_12, 2, 1)
         addCellListeners(cell_13, 3, 1)
@@ -308,27 +348,35 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         addCellListeners(cell_99, 9, 9)
     }
 
-    fun addCellListeners(view: View?, row: Int, col: Int){
+    fun addCellListeners(view: View?, row: Int, col: Int) {
         view?.setOnClickListener { submitCellNumber(it, row, col, false) }
         view?.setOnLongClickListener { submitCellMark(it, row, col, true) }
     }
 
     fun submitCellNumber(view: View, row: Int, col: Int, isMark: Boolean) {
-        rowCtx = row - 1
-        colCtx = col - 1
-        cellCtx = activity!!.findViewById(view.id)
-        cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
-        fragmentIngress(isMark)
+        if (!hasRadialFragmentLaunched) {
+            hasRadialFragmentLaunched = true
+            rowCtx = row - 1
+            colCtx = col - 1
+            cellCtx = activity!!.findViewById(view.id)
+            cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
+            fragmentIngress(isMark)
+            toastTime()
+        }
     }
 
     //A copy of submitCellNumber above, but needs to return true so the onClick does not fire
     fun submitCellMark(view: View, row: Int, col: Int, isMark: Boolean): Boolean {
-        rowCtx = row - 1
-        colCtx = col - 1
-        cellCtx = activity!!.findViewById(view.id)
-        cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
-        fragmentIngress(isMark)
-        return true
+        if (!hasRadialFragmentLaunched) {
+            hasRadialFragmentLaunched = true
+            rowCtx = row - 1
+            colCtx = col - 1
+            cellCtx = activity!!.findViewById(view.id)
+            cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
+            fragmentIngress(isMark)
+            return true
+        }
+        return false
     }
 
     fun initCell(tv: CellTextView?, n: Int) {
@@ -345,31 +393,53 @@ class GameFragment: Fragment(), NumberPickerFragment.OnNumberSelectListener{
         }
     }
 
-    //TODO Pause timer
-    fun startStopWatch() {
-        stopWatchTimer.scheduleAtFixedRate(
-            object : TimerTask() {
-                override fun run() {
-                    stopWatchSeconds++
-                    if (stopWatchSeconds >= 60) {
-                        stopWatchMinutes++
-                        stopWatchSeconds = 0
-                    }
-                    var timerString = ""
-                    if (stopWatchMinutes < 10) {
-                        timerString += "0$stopWatchMinutes:"
-                    } else {
-                        timerString += "$stopWatchMinutes:"
-                    }
-                    if (stopWatchSeconds < 10) {
-                        timerString += "0$stopWatchSeconds"
-                    } else {
-                        timerString += "$stopWatchSeconds"
-                    }
-                    textViewTimer?.text = timerString
-                }
-            }
-            , 1000, 1000
-        )
+    //Initialize chronometer
+    fun initChronometer(){
+        gameChronometer.base = SystemClock.elapsedRealtime()
+    }
+
+    //Start chronometer
+    fun startChronometer(){
+        if(!isChronometerRunning){
+            gameChronometer.base = SystemClock.elapsedRealtime()
+            gameChronometer.start()
+            isChronometerRunning = true
+        }
+    }
+
+    fun pauseChronometer(){
+        if(isChronometerRunning){
+            gameChronometer.stop()
+            pauseOffset = SystemClock.elapsedRealtime() - gameChronometer.base
+            isChronometerRunning = false
+        }
+    }
+
+    fun resumeChronometer(){
+        if(!isChronometerRunning){
+            gameChronometer.base = SystemClock.elapsedRealtime() - pauseOffset
+            gameChronometer.start()
+            isChronometerRunning = true
+        }
+    }
+
+    fun resetChronometer(){
+        gameChronometer.base = SystemClock.elapsedRealtime()
+        pauseOffset = 0
+    }
+
+    fun toastTime(){
+        val elapsedMillis = (SystemClock.elapsedRealtime() - gameChronometer.base).div(1000)
+        Toast.makeText(activity, "Elapsed milliseconds: " + elapsedMillis, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onPause() {
+        pauseChronometer()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resumeChronometer()
     }
 }

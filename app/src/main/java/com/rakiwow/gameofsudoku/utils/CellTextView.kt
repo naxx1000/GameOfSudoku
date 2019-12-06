@@ -59,19 +59,19 @@ class CellTextView @JvmOverloads constructor(
         val y: Float
         when(markNumber){
             1 -> {
-                x = 18f
-                y = 25f
+                x = 17f
+                y = 24f
             }
             2 -> {
                 x = 40f
-                y = 25f
+                y = 24f
             }
             3 -> {
-                x = 62f
-                y = 25f
+                x = 63f
+                y = 24f
             }
             4 -> {
-                x = 18f
+                x = 17f
                 y = 46f
             }
             5 -> {
@@ -79,20 +79,20 @@ class CellTextView @JvmOverloads constructor(
                 y = 46f
             }
             6 -> {
-                x = 62f
+                x = 63f
                 y = 46f
             }
             7 -> {
-                x = 18f
-                y = 67f
+                x = 17f
+                y = 68f
             }
             8 -> {
                 x = 40f
-                y = 67f
+                y = 68f
             }
             9 -> {
-                x = 62f
-                y = 67f
+                x = 63f
+                y = 68f
             }
             else -> {
                 x = 0f
