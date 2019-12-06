@@ -8,11 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.SudokuCanvasView
+import java.text.DateFormat
 import java.util.*
 
 class HistoryRecyclerViewAdapter : RecyclerView.Adapter<HistoryRecyclerViewAdapter.StatsViewHolder>() {
 
     private var statsList = emptyList<SudokuStats>()
+    lateinit var dateFormat: DateFormat
+
+    fun HistoryRecyclerViewAdapter(locale: Locale){
+        dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale)
+    }
 
     inner class StatsViewHolder(v: View) : RecyclerView.ViewHolder(v){
         val historyTextView: TextView = v.findViewById(R.id.history_textview)

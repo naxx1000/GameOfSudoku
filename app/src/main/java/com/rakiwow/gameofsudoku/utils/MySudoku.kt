@@ -39,9 +39,9 @@ class MySudoku {
     fun createGame(difficulty: Int): Array<IntArray> {
         val maxRemovedCells: Int
         when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
-            0 -> maxRemovedCells = 40
-            1 -> maxRemovedCells = 44
-            2 -> maxRemovedCells = 48
+            0 -> maxRemovedCells = 34
+            1 -> maxRemovedCells = 40
+            2 -> maxRemovedCells = 46
             3 -> maxRemovedCells = 52
             4 -> maxRemovedCells = 56
             404 -> maxRemovedCells = 1 //For debugging

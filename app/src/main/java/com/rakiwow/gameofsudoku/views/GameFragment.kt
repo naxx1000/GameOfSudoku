@@ -226,10 +226,11 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     cellCtx.text = " "
                     addCellListeners(
                         cellCtx,
-                        rowCtx,
-                        colCtx
+                        rowCtx + 1,
+                        colCtx + 1
                     ) //Reapplies listeners when a number is removed from a cell
                 } else if (number in 1..9) {
+                    println("row: $rowCtx, col: $colCtx")
                     game[rowCtx][colCtx] = number
                     cellCtx.text = "$number"
                     cellCtx.removeAllMarks()
@@ -251,13 +252,14 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                             unsolvedGame
                         )
                     )
-                    stopWatchTimer.cancel()
-                    stopWatchTimer.purge()
+                    pauseChronometer()
                 } else {
                     main_constraint_layout.setBackgroundColor(Color.RED)
                 }
             }
         }
+        println(sudoku.isGridFilled(game))
+        sudoku.printGame(game)
     }
 
     override fun onNumberSelect(number: Int, isMark: Boolean?) {
@@ -361,7 +363,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             cellCtx = activity!!.findViewById(view.id)
             cellCtx.setBackgroundColor(resources.getColor(R.color.cellMarked))
             fragmentIngress(isMark)
-            toastTime()
         }
     }
 
@@ -426,11 +427,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     fun resetChronometer(){
         gameChronometer.base = SystemClock.elapsedRealtime()
         pauseOffset = 0
-    }
-
-    fun toastTime(){
-        val elapsedMillis = (SystemClock.elapsedRealtime() - gameChronometer.base).div(1000)
-        Toast.makeText(activity, "Elapsed milliseconds: " + elapsedMillis, Toast.LENGTH_LONG).show()
     }
 
     override fun onPause() {

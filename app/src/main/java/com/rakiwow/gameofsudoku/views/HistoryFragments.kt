@@ -30,7 +30,7 @@ class HistoryFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = HistoryRecyclerViewAdapter()
+        adapter = HistoryRecyclerViewAdapter(resources.configuration.locale)
         recycler_history.adapter = adapter
         recycler_history.layoutManager = LinearLayoutManager(activity)
 

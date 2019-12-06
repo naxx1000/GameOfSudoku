@@ -9,9 +9,6 @@ import android.view.ViewGroup
 
 import com.rakiwow.gameofsudoku.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class RecordsFragment : Fragment() {
 
     override fun onCreateView(
