@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(SudokuStats::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(SudokuStats::class), version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun sudokuStatsDao(): SudokuStatsDao
 

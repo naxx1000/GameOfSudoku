@@ -10,7 +10,8 @@ data class SudokuStats(
     @ColumnInfo(name = "difficulty") val difficulty: Int?,
     @ColumnInfo(name = "date") val date: Long?,
     @ColumnInfo(name = "completedTime") val completedTime: Int?,
-    @ColumnInfo(name = "grid") val grid: Array<IntArray>?
+    @ColumnInfo(name = "grid") val grid: Array<IntArray>?,
+    @ColumnInfo(name = "clues") val clues: Int?
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

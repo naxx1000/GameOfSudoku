@@ -1,5 +1,6 @@
 package com.rakiwow.gameofsudoku.utils
 
+import com.rakiwow.gameofsudoku.data.SudokuBoard
 import java.util.*
 
 class MySudoku {
@@ -36,10 +37,10 @@ class MySudoku {
         return row
     }
 
-    fun createGame(difficulty: Int): Array<IntArray> {
+    fun createGame(difficulty: Int): SudokuBoard {
         val maxRemovedCells: Int
         when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
-            0 -> maxRemovedCells = 34
+            0 -> maxRemovedCells = 10 //34
             1 -> maxRemovedCells = 40
             2 -> maxRemovedCells = 46
             3 -> maxRemovedCells = 52
@@ -86,7 +87,7 @@ class MySudoku {
         println("Removed cells: " + (81 - cluesCountHardestGrid))
         println("Actual clues: " + actualClues())
         unsolvedGrid = gridHardest
-        return gridHardest
+        return SudokuBoard(gridHardest, actualClues())
     }
 
     private fun initGame() {

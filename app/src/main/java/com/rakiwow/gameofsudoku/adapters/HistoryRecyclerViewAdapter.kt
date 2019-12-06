@@ -8,17 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.SudokuCanvasView
+import java.lang.StringBuilder
 import java.text.DateFormat
 import java.util.*
 
-class HistoryRecyclerViewAdapter : RecyclerView.Adapter<HistoryRecyclerViewAdapter.StatsViewHolder>() {
+class HistoryRecyclerViewAdapter(locale: Locale) : RecyclerView.Adapter<HistoryRecyclerViewAdapter.StatsViewHolder>() {
 
     private var statsList = emptyList<SudokuStats>()
-    lateinit var dateFormat: DateFormat
-
-    fun HistoryRecyclerViewAdapter(locale: Locale){
-        dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale)
-    }
+    private val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale)
 
     inner class StatsViewHolder(v: View) : RecyclerView.ViewHolder(v){
         val historyTextView: TextView = v.findViewById(R.id.history_textview)
@@ -37,11 +34,21 @@ class HistoryRecyclerViewAdapter : RecyclerView.Adapter<HistoryRecyclerViewAdapt
         position: Int
     ) {
         val statsItem = statsList[position]
-        val completedTime = (statsItem.completedTime?.div(60)).toString() + " Minutes, " + (statsItem.completedTime?.minus(
-            statsItem.completedTime.div(60) * 60
-        )).toString() + " Seconds."
-        val date: Date? = statsItem.date?.let { Date(it) }
-        holder.historyTextView.text = "Difficulty: ${statsItem.difficulty} Completed in: $completedTime Date: $date"
+        val timeMinutes = statsItem.completedTime?.div(60)
+        val timeSeconds = statsItem.completedTime?.minus(statsItem.completedTime.div(60) * 60)
+        val timeStringBuilder = StringBuilder()
+        if(timeMinutes == 1){
+            timeStringBuilder.append(timeMinutes.toString() + " Minute ")
+        }else if(timeMinutes != 0) {
+            timeStringBuilder.append(timeMinutes.toString() + " Minutes ")
+        }
+        if(timeSeconds == 1){
+            timeStringBuilder.append(timeSeconds.toString() + " Second")
+        }else if(timeSeconds != 0){
+            timeStringBuilder.append(timeSeconds.toString() + " Seconds")
+        }
+        val date: String? = dateFormat.format(statsItem.date?.let { Date(it) })
+        holder.historyTextView.text = "Difficulty: ${getDifficultyString(statsItem.difficulty)} // ${statsItem.clues} clues\nCompleted in: $timeStringBuilder\nDate: $date"
         holder.historySudokuView.grid = statsItem.grid
 
     }
@@ -53,5 +60,16 @@ class HistoryRecyclerViewAdapter : RecyclerView.Adapter<HistoryRecyclerViewAdapt
 
     override fun getItemCount(): Int {
         return statsList.size
+    }
+
+    internal fun getDifficultyString(difficulty: Int?) : String{
+        when(difficulty){
+            0 -> return "I'M TOO YOUNG TO DIE"
+            1 -> return "HURT ME PLENTY"
+            2 -> return "ULTRA-VIOLENCE"
+            3 -> return "NIGHTMARE"
+            4 -> return "ULTRA-NIGHTMARE"
+            else -> return "???"
+        }
     }
 }

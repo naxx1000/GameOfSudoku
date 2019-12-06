@@ -34,6 +34,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     var isChronometerRunning = false
     lateinit var cellCtx: CellTextView
     private lateinit var statsViewModel: StatsViewModel
+    var clues = 0
     var game: Array<IntArray> = Array(9) { IntArray(9) }
     var unsolvedGame: Array<IntArray> = Array(9) { IntArray(9) }
 
@@ -189,7 +190,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     suspend fun createPuzzleBackground(difficulty: Int) = coroutineScope {
         launch {
             // Difficulties range from 0-10
-            game = sudoku.createGame(difficulty)
+            val sudokuBoard = sudoku.createGame(difficulty)
+            game = sudokuBoard.board
+            clues = sudokuBoard.clues
         }
     }
 
@@ -249,7 +252,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                             gameDifficulty,
                             Date().time,
                             (SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt(),
-                            unsolvedGame
+                            unsolvedGame,
+                            clues
                         )
                     )
                     pauseChronometer()
