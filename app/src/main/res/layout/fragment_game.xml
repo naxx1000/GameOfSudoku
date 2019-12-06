@@ -11,7 +11,7 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/mainGrid"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/textColor"
         app:columnCount="3"
@@ -25,128 +25,123 @@
         <!-- Region 1 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_11"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_21"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_31"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_12"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_22"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_32"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_13"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_23"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_33"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
                 android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                app:layout_gravity="left|top" />
+                android:textSize="18sp" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 2 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_41"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -156,8 +151,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_51"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -167,8 +162,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_61"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -178,8 +173,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_42"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -189,8 +184,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_52"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -200,8 +195,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_62"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -211,8 +206,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_43"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -222,8 +217,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_53"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -233,8 +228,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_63"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -246,13 +241,16 @@
         <!-- Region 3 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_71"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -262,8 +260,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_81"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -273,8 +272,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_91"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -284,8 +284,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_72"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -295,8 +296,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_82"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -306,8 +308,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_92"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -317,8 +320,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_73"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -328,8 +332,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_83"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -339,8 +344,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_93"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -352,13 +358,16 @@
         <!-- Region 4 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_14"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -368,8 +377,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_24"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -379,8 +389,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_34"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -390,8 +401,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_15"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -401,8 +413,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_25"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -412,8 +425,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_35"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -423,8 +437,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_16"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -434,8 +449,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_26"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -445,8 +461,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_36"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -458,13 +475,16 @@
         <!-- Region 5 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_44"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -474,8 +494,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_54"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -485,8 +506,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_64"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -496,8 +518,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_45"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -507,8 +530,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_55"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -518,8 +542,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_65"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -529,8 +554,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_46"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -540,8 +566,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_56"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -551,8 +578,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_66"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -564,13 +592,16 @@
         <!-- Region 6 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_74"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -580,8 +611,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_84"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -591,8 +623,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_94"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -602,8 +635,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_75"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -613,8 +647,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_85"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -624,8 +659,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_95"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -635,8 +671,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_76"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -646,8 +683,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_86"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -657,8 +695,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_96"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -670,13 +709,16 @@
         <!-- Region 7 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_17"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -686,8 +728,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_27"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -697,8 +740,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_37"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -708,8 +752,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_18"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -719,8 +764,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_28"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -730,8 +776,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_38"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -741,8 +788,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_19"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -752,8 +800,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_29"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -763,8 +812,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_39"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -776,13 +826,16 @@
         <!-- Region 8 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_47"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -792,8 +845,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_57"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -803,8 +857,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_67"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -814,8 +869,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_48"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -825,8 +881,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_58"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -836,8 +893,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_68"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -847,8 +905,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_49"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -858,8 +917,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_59"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -869,8 +929,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_69"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -882,13 +943,16 @@
         <!-- Region 9 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1"
             app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_77"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -898,8 +962,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_87"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -909,8 +974,9 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_97"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -920,8 +986,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_78"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -931,8 +997,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_88"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -942,8 +1008,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_98"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -953,8 +1019,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_79"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -964,8 +1030,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_89"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -975,8 +1041,8 @@
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
                 android:id="@+id/cell_99"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
                 android:gravity="center"
@@ -999,12 +1065,14 @@
 
     <Chronometer
         android:id="@+id/gameChronometer"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/mainGrid"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar

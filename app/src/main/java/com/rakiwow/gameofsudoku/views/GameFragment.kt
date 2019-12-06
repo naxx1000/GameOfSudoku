@@ -1,5 +1,6 @@
 package com.rakiwow.gameofsudoku.views
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,10 @@ import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
 import android.os.SystemClock
+import android.widget.GridLayout
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
 import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.CellTextView
@@ -55,6 +59,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
         createPuzzle(gameDifficulty)
 
+        initGameLayout()
         initChronometer()
         startChronometer()
     }
@@ -441,5 +446,46 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     override fun onResume() {
         super.onResume()
         resumeChronometer()
+    }
+
+    fun initGameLayout(){
+        mainGrid.post {
+            if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+                //Gridlayout
+                val gOldParams = mainGrid.layoutParams as ConstraintLayout.LayoutParams
+                val gNewParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, main_constraint_layout.width)
+                gNewParams.startToStart = gOldParams.startToStart
+                gNewParams.endToEnd = gOldParams.endToEnd
+                gNewParams.topToTop = gOldParams.topToTop
+                gNewParams.bottomToBottom = gOldParams.bottomToBottom
+                mainGrid.layoutParams = gNewParams
+
+                //Chronometer
+                val constraintSet = ConstraintSet()
+                constraintSet.connect(gameChronometer.id, ConstraintSet.BOTTOM, mainGrid.id, ConstraintSet.TOP)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+                constraintSet.applyTo(main_constraint_layout)
+
+            }else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                //Gridlayout
+                val oldParams = mainGrid.layoutParams as ConstraintLayout.LayoutParams
+                val newParams = ConstraintLayout.LayoutParams(main_constraint_layout.height, ConstraintLayout.LayoutParams.MATCH_PARENT)
+                newParams.startToStart = oldParams.startToStart
+                newParams.endToEnd = oldParams.endToEnd
+                newParams.topToTop = oldParams.topToTop
+                newParams.bottomToBottom = oldParams.bottomToBottom
+                mainGrid.layoutParams = newParams
+
+                //Chronometer
+                val constraintSet = ConstraintSet()
+                constraintSet.connect(gameChronometer.id, ConstraintSet.RIGHT, mainGrid.id, ConstraintSet.LEFT)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+                constraintSet.connect(gameChronometer.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
+                constraintSet.applyTo(main_constraint_layout)
+            }
+        }
     }
 }
