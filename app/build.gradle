@@ -28,9 +28,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     //Lifecycle Component
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc02'
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-rc02"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc03'
+    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-rc03"
     //Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
@@ -43,10 +45,8 @@ dependencies {
     implementation "androidx.room:room-ktx:2.2.2"
     implementation "androidx.room:room-runtime:2.2.2"
     kapt("androidx.room:room-compiler:2.2.2")
-    //Facebook share library
-    implementation 'com.facebook.android:facebook-share:5.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    //Koala Color Picker
+    implementation 'com.github.naxx1000:KoalaColorPicker:0.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

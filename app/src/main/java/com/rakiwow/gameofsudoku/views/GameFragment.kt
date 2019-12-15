@@ -11,14 +11,13 @@ import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
 import android.os.SystemClock
-import android.widget.GridLayout
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
 import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.CellTextView
-import com.rakiwow.gameofsudoku.viewmodel.StatsViewModel
+import com.rakiwow.gameofsudoku.viewmodel.HistoryViewModel
+import com.rakiwow.koalacolorpicker.ColorToHarmonyColors
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 
@@ -26,7 +25,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     val sudoku: MySudoku = MySudoku()
     val numberFragment = NumberPickerFragment()
-    val stopWatchTimer = Timer()
 
     var stopWatchSeconds: Int = 0
     var stopWatchMinutes: Int = 0
@@ -37,7 +35,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     var hasRadialFragmentLaunched = false
     var isChronometerRunning = false
     lateinit var cellCtx: CellTextView
-    private lateinit var statsViewModel: StatsViewModel
+    private lateinit var statsViewModel: HistoryViewModel
     var clues = 0
     var game: Array<IntArray> = Array(9) { IntArray(9) }
     var unsolvedGame: Array<IntArray> = Array(9) { IntArray(9) }
@@ -54,7 +52,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         super.onViewCreated(view, savedInstanceState)
         //TODO save the grid, unsolvedgrid, time with savedPreferences when a cell is placed or onPause is called
 
-        statsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
+        statsViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
         gameDifficulty = arguments!!.getInt("difficulty", 0)
 
         createPuzzle(gameDifficulty)
@@ -62,6 +60,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         initGameLayout()
         initChronometer()
         startChronometer()
+        initLayoutColors()
     }
 
     //Inserts the values from the grid into each Cell Text View
@@ -404,36 +403,36 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     }
 
     //Initialize chronometer
-    fun initChronometer(){
+    fun initChronometer() {
         gameChronometer.base = SystemClock.elapsedRealtime()
     }
 
     //Start chronometer
-    fun startChronometer(){
-        if(!isChronometerRunning){
+    fun startChronometer() {
+        if (!isChronometerRunning) {
             gameChronometer.base = SystemClock.elapsedRealtime()
             gameChronometer.start()
             isChronometerRunning = true
         }
     }
 
-    fun pauseChronometer(){
-        if(isChronometerRunning){
+    fun pauseChronometer() {
+        if (isChronometerRunning) {
             gameChronometer.stop()
             pauseOffset = SystemClock.elapsedRealtime() - gameChronometer.base
             isChronometerRunning = false
         }
     }
 
-    fun resumeChronometer(){
-        if(!isChronometerRunning){
+    fun resumeChronometer() {
+        if (!isChronometerRunning) {
             gameChronometer.base = SystemClock.elapsedRealtime() - pauseOffset
             gameChronometer.start()
             isChronometerRunning = true
         }
     }
 
-    fun resetChronometer(){
+    fun resetChronometer() {
         gameChronometer.base = SystemClock.elapsedRealtime()
         pauseOffset = 0
     }
@@ -448,12 +447,15 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         resumeChronometer()
     }
 
-    fun initGameLayout(){
+    fun initGameLayout() {
         mainGrid.post {
-            if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 //Gridlayout
                 val gOldParams = mainGrid.layoutParams as ConstraintLayout.LayoutParams
-                val gNewParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, main_constraint_layout.width)
+                val gNewParams = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    main_constraint_layout.width
+                )
                 gNewParams.startToStart = gOldParams.startToStart
                 gNewParams.endToEnd = gOldParams.endToEnd
                 gNewParams.topToTop = gOldParams.topToTop
@@ -462,16 +464,39 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
                 //Chronometer
                 val constraintSet = ConstraintSet()
-                constraintSet.connect(gameChronometer.id, ConstraintSet.BOTTOM, mainGrid.id, ConstraintSet.TOP)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.BOTTOM,
+                    mainGrid.id,
+                    ConstraintSet.TOP
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.RIGHT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.RIGHT
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.TOP,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.TOP
+                )
                 constraintSet.applyTo(main_constraint_layout)
 
-            }else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 //Gridlayout
                 val oldParams = mainGrid.layoutParams as ConstraintLayout.LayoutParams
-                val newParams = ConstraintLayout.LayoutParams(main_constraint_layout.height, ConstraintLayout.LayoutParams.MATCH_PARENT)
+                val newParams = ConstraintLayout.LayoutParams(
+                    main_constraint_layout.height,
+                    ConstraintLayout.LayoutParams.MATCH_PARENT
+                )
                 newParams.startToStart = oldParams.startToStart
                 newParams.endToEnd = oldParams.endToEnd
                 newParams.topToTop = oldParams.topToTop
@@ -480,12 +505,41 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
                 //Chronometer
                 val constraintSet = ConstraintSet()
-                constraintSet.connect(gameChronometer.id, ConstraintSet.RIGHT, mainGrid.id, ConstraintSet.LEFT)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
-                constraintSet.connect(gameChronometer.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.RIGHT,
+                    mainGrid.id,
+                    ConstraintSet.LEFT
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.TOP,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.TOP
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.BOTTOM,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.BOTTOM
+                )
+                constraintSet.connect(
+                    gameChronometer.id,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT
+                )
                 constraintSet.applyTo(main_constraint_layout)
             }
         }
+    }
+
+    fun initLayoutColors() {
+        ColorToHarmonyColors.colorArray?.get(1)?.let { col1 ->
+            main_constraint_layout.setBackgroundColor(
+                col1
+            )
+        }
+
     }
 }

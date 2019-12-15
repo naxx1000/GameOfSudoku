@@ -9,7 +9,7 @@ import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.data.SudokuStatsRepository
 import kotlinx.coroutines.launch
 
-class StatsViewModel (application: Application) : AndroidViewModel(application){
+class HistoryViewModel (application: Application) : AndroidViewModel(application){
 
     private val repository: SudokuStatsRepository
     val statsData: LiveData<List<SudokuStats>>

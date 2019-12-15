@@ -11,13 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.adapters.HistoryRecyclerViewAdapter
-import com.rakiwow.gameofsudoku.viewmodel.StatsViewModel
+import com.rakiwow.gameofsudoku.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.fragment_history.*
 
 class HistoryFragments : Fragment() {
 
     private lateinit var adapter: HistoryRecyclerViewAdapter
-    private lateinit var statsViewModel: StatsViewModel
+    private lateinit var historyViewModel: HistoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +34,8 @@ class HistoryFragments : Fragment() {
         recycler_history.adapter = adapter
         recycler_history.layoutManager = LinearLayoutManager(activity)
 
-        statsViewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
-        statsViewModel.statsData.observe(viewLifecycleOwner, Observer{ stats ->
+        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        historyViewModel.statsData.observe(viewLifecycleOwner, Observer{ stats ->
             stats?.let{adapter.setStats(it)}
         })
     }
