@@ -17,9 +17,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.rakiwow.gameofsudoku.data.SudokuStats
 import com.rakiwow.gameofsudoku.utils.CellTextView
 import com.rakiwow.gameofsudoku.viewmodel.HistoryViewModel
-import com.rakiwow.koalacolorpicker.ColorToHarmonyColors
+import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
@@ -35,7 +36,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     var hasRadialFragmentLaunched = false
     var isChronometerRunning = false
     lateinit var cellCtx: CellTextView
-    private lateinit var statsViewModel: HistoryViewModel
+    private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var sharedViewModel: MainSharedViewModel
     var clues = 0
     var game: Array<IntArray> = Array(9) { IntArray(9) }
     var unsolvedGame: Array<IntArray> = Array(9) { IntArray(9) }
@@ -50,9 +52,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO save the grid, unsolvedgrid, time with savedPreferences when a cell is placed or onPause is called
+        //TODO save the grid, unsolvedgrid, time with sharedPreferences when a cell is placed or onPause is called
 
-        statsViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        sharedViewModel = activity?.run{
+            ViewModelProvider(this).get(MainSharedViewModel::class.java)
+        }?: throw Exception("Invalid Activity")
         gameDifficulty = arguments!!.getInt("difficulty", 0)
 
         createPuzzle(gameDifficulty)
@@ -250,7 +255,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             if (sudoku.isGridFilled(game)) {
                 if (sudoku.validateBoard(game)) {
                     main_constraint_layout.setBackgroundColor(Color.GREEN)
-                    statsViewModel.insert(
+                    historyViewModel.insert(
                         SudokuStats(
                             0,
                             gameDifficulty,
@@ -535,11 +540,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     }
 
     fun initLayoutColors() {
-        ColorToHarmonyColors.colorArray?.get(1)?.let { col1 ->
-            main_constraint_layout.setBackgroundColor(
-                col1
-            )
-        }
-
+        sharedViewModel.colors.observe(viewLifecycleOwner, androidx.lifecycle.Observer<IntArray>{ colors ->
+            main_constraint_layout.setBackgroundColor(colors[1])
+            gameChronometer.setTextColor(colors[4])
+        })
     }
 }

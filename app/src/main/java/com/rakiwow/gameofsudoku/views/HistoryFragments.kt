@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.adapters.HistoryRecyclerViewAdapter
 import com.rakiwow.gameofsudoku.viewmodel.HistoryViewModel
+import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import kotlinx.android.synthetic.main.fragment_history.*
+import java.lang.Exception
 
 class HistoryFragments : Fragment() {
 
     private lateinit var adapter: HistoryRecyclerViewAdapter
     private lateinit var historyViewModel: HistoryViewModel
+    private lateinit var sharedViewModel: MainSharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,16 @@ class HistoryFragments : Fragment() {
         historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
         historyViewModel.statsData.observe(viewLifecycleOwner, Observer{ stats ->
             stats?.let{adapter.setStats(it)}
+        })
+        sharedViewModel = activity?.run{
+            ViewModelProvider(this).get(MainSharedViewModel::class.java)
+        }?: throw Exception("Invalid Activity")
+        initLayoutColors()
+    }
+
+    fun initLayoutColors() {
+        sharedViewModel.colors.observe(viewLifecycleOwner, androidx.lifecycle.Observer<IntArray>{ colors ->
+            history_background_layout.setBackgroundColor(colors[1])
         })
     }
 }

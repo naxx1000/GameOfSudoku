@@ -9,11 +9,14 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import com.rakiwow.koalacolorpicker.ColorToHarmonyColors
 import com.rakiwow.koalacolorpicker.KoalaColorPicker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main_drawer.*
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawer: DrawerLayout
     private var cursorPos: Int? = null
+    private lateinit var sharedViewModel: MainSharedViewModel
     private lateinit var colorThemeArray: IntArray
 
     companion object {
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //TODO save the colorThemeArray into sharedpreferences
 
         setSupportActionBar(main_toolbar)
         drawer = findViewById(R.id.main_activity_drawer_layout)
@@ -45,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
             }
+        }
+
+        sharedViewModel = run{
+            ViewModelProvider(this)[MainSharedViewModel::class.java]
         }
 
         val navController = nav_host_fragment.findNavController()
@@ -81,7 +89,6 @@ class MainActivity : AppCompatActivity() {
             args.putInt("difficulty", 4)
             navController.navigate(R.id.newGameFragment, args)
         }
-
         drawer_button_history.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
@@ -120,26 +127,9 @@ class MainActivity : AppCompatActivity() {
 
                     cursorPos = cursorPosition
                     colorThemeArray = colorToHarmonyColors.complementary(colorInt, mIsDarkMode)
-                    val unwrappedDrawable = AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_color_lens_white_24dp)
-                    if(unwrappedDrawable != null){
-                        val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
-                        DrawableCompat.setTint(wrappedDrawable, colorThemeArray[4])
-                        invalidateOptionsMenu()
-                    }
-                    main_toolbar.setTitleTextColor(colorThemeArray[4])
-                    toggle.drawerArrowDrawable.color = colorThemeArray[4]
-                    motion_drawer_menu.setBackgroundColor(colorThemeArray[0])
-                    main_toolbar.setBackgroundColor(colorThemeArray[2])
-                    drawer_button_continue.setBackgroundColor(colorThemeArray[4])
-                    drawer_button_newgame.setBackgroundColor(colorThemeArray[4])
-                    drawer_button_records.setBackgroundColor(colorThemeArray[4])
-                    drawer_button_history.setBackgroundColor(colorThemeArray[4])
-                    drawer_button_about.setBackgroundColor(colorThemeArray[4])
-                    drawer_diff_1.setBackgroundColor(colorThemeArray[4])
-                    drawer_diff_2.setBackgroundColor(colorThemeArray[4])
-                    drawer_diff_3.setBackgroundColor(colorThemeArray[4])
-                    drawer_diff_4.setBackgroundColor(colorThemeArray[4])
-                    drawer_diff_5.setBackgroundColor(colorThemeArray[4])
+                    sharedViewModel.setColorsArray(colorThemeArray)
+
+                    paintMainActivityViews()
                 }
             })
             colorPicker.show(supportFragmentManager, "ColorPickerDialogFragment")
@@ -156,7 +146,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun printSomething(text: String) {
-        println(text)
+    fun paintMainActivityViews(){
+        val unwrappedDrawable = AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_color_lens_white_24dp)
+        if(unwrappedDrawable != null){
+            val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
+            DrawableCompat.setTint(wrappedDrawable, colorThemeArray[4])
+            invalidateOptionsMenu()
+        }
+        main_toolbar.setTitleTextColor(colorThemeArray[4])
+        toggle.drawerArrowDrawable.color = colorThemeArray[4]
+        motion_drawer_menu.setBackgroundColor(colorThemeArray[0])
+        main_toolbar.setBackgroundColor(colorThemeArray[2])
+        drawer_button_continue.setBackgroundColor(colorThemeArray[4])
+        drawer_button_newgame.setBackgroundColor(colorThemeArray[4])
+        drawer_button_records.setBackgroundColor(colorThemeArray[4])
+        drawer_button_history.setBackgroundColor(colorThemeArray[4])
+        drawer_button_about.setBackgroundColor(colorThemeArray[4])
+        drawer_diff_1.setBackgroundColor(colorThemeArray[4])
+        drawer_diff_2.setBackgroundColor(colorThemeArray[4])
+        drawer_diff_3.setBackgroundColor(colorThemeArray[4])
+        drawer_diff_4.setBackgroundColor(colorThemeArray[4])
+        drawer_diff_5.setBackgroundColor(colorThemeArray[4])
     }
 }
