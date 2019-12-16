@@ -1,5 +1,6 @@
 package com.rakiwow.gameofsudoku.views
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +32,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     var stopWatchMinutes: Int = 0
     var rowCtx: Int = 0
     var colCtx: Int = 0
-    var gameDifficulty = 0
+    private var gameDifficulty = -1
     var pauseOffset: Long = 0L
     var hasRadialFragmentLaunched = false
     var isChronometerRunning = false
@@ -54,145 +55,185 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         super.onViewCreated(view, savedInstanceState)
         //TODO save the grid, unsolvedgrid, time with sharedPreferences when a cell is placed or onPause is called
 
+
         historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
         sharedViewModel = activity?.run{
             ViewModelProvider(this).get(MainSharedViewModel::class.java)
         }?: throw Exception("Invalid Activity")
-        gameDifficulty = arguments!!.getInt("difficulty", 0)
+        gameDifficulty = arguments!!.getInt("difficulty", -1)
 
         createPuzzle(gameDifficulty)
 
         initGameLayout()
         initChronometer()
-        startChronometer()
         initLayoutColors()
+        startChronometer()
     }
 
     //Inserts the values from the grid into each Cell Text View
     fun setUpGrid(grid: Array<IntArray>) {
         //Row 1
-        initCell(cell_11, grid[0][0])
-        initCell(cell_21, grid[0][1])
-        initCell(cell_31, grid[0][2])
-        initCell(cell_41, grid[0][3])
-        initCell(cell_51, grid[0][4])
-        initCell(cell_61, grid[0][5])
-        initCell(cell_71, grid[0][6])
-        initCell(cell_81, grid[0][7])
-        initCell(cell_91, grid[0][8])
+        initCell(cell_11, 0, 0)
+        initCell(cell_21, 0, 1)
+        initCell(cell_31, 0, 2)
+        initCell(cell_41, 0, 3)
+        initCell(cell_51, 0, 4)
+        initCell(cell_61, 0, 5)
+        initCell(cell_71, 0, 6)
+        initCell(cell_81, 0, 7)
+        initCell(cell_91, 0, 8)
 
         //Row 2
-        initCell(cell_12, grid[1][0])
-        initCell(cell_22, grid[1][1])
-        initCell(cell_32, grid[1][2])
-        initCell(cell_42, grid[1][3])
-        initCell(cell_52, grid[1][4])
-        initCell(cell_62, grid[1][5])
-        initCell(cell_72, grid[1][6])
-        initCell(cell_82, grid[1][7])
-        initCell(cell_92, grid[1][8])
+        initCell(cell_12, 1, 0)
+        initCell(cell_22, 1, 1)
+        initCell(cell_32, 1, 2)
+        initCell(cell_42, 1, 3)
+        initCell(cell_52, 1, 4)
+        initCell(cell_62, 1, 5)
+        initCell(cell_72, 1, 6)
+        initCell(cell_82, 1, 7)
+        initCell(cell_92, 1, 8)
 
         //Row 3
-        initCell(cell_13, grid[2][0])
-        initCell(cell_23, grid[2][1])
-        initCell(cell_33, grid[2][2])
-        initCell(cell_43, grid[2][3])
-        initCell(cell_53, grid[2][4])
-        initCell(cell_63, grid[2][5])
-        initCell(cell_73, grid[2][6])
-        initCell(cell_83, grid[2][7])
-        initCell(cell_93, grid[2][8])
+        initCell(cell_13, 2, 0)
+        initCell(cell_23, 2, 1)
+        initCell(cell_33, 2, 2)
+        initCell(cell_43, 2, 3)
+        initCell(cell_53, 2, 4)
+        initCell(cell_63, 2, 5)
+        initCell(cell_73, 2, 6)
+        initCell(cell_83, 2, 7)
+        initCell(cell_93, 2, 8)
 
         //Row 4
-        initCell(cell_14, grid[3][0])
-        initCell(cell_24, grid[3][1])
-        initCell(cell_34, grid[3][2])
-        initCell(cell_44, grid[3][3])
-        initCell(cell_54, grid[3][4])
-        initCell(cell_64, grid[3][5])
-        initCell(cell_74, grid[3][6])
-        initCell(cell_84, grid[3][7])
-        initCell(cell_94, grid[3][8])
+        initCell(cell_14, 3, 0)
+        initCell(cell_24, 3, 1)
+        initCell(cell_34, 3, 2)
+        initCell(cell_44, 3, 3)
+        initCell(cell_54, 3, 4)
+        initCell(cell_64, 3, 5)
+        initCell(cell_74, 3, 6)
+        initCell(cell_84, 3, 7)
+        initCell(cell_94, 3, 8)
 
         //Row 5
-        initCell(cell_15, grid[4][0])
-        initCell(cell_25, grid[4][1])
-        initCell(cell_35, grid[4][2])
-        initCell(cell_45, grid[4][3])
-        initCell(cell_55, grid[4][4])
-        initCell(cell_65, grid[4][5])
-        initCell(cell_75, grid[4][6])
-        initCell(cell_85, grid[4][7])
-        initCell(cell_95, grid[4][8])
+        initCell(cell_15, 4, 0)
+        initCell(cell_25, 4, 1)
+        initCell(cell_35, 4, 2)
+        initCell(cell_45, 4, 3)
+        initCell(cell_55, 4, 4)
+        initCell(cell_65, 4, 5)
+        initCell(cell_75, 4, 6)
+        initCell(cell_85, 4, 7)
+        initCell(cell_95, 4, 8)
 
         //Row 6
-        initCell(cell_16, grid[5][0])
-        initCell(cell_26, grid[5][1])
-        initCell(cell_36, grid[5][2])
-        initCell(cell_46, grid[5][3])
-        initCell(cell_56, grid[5][4])
-        initCell(cell_66, grid[5][5])
-        initCell(cell_76, grid[5][6])
-        initCell(cell_86, grid[5][7])
-        initCell(cell_96, grid[5][8])
+        initCell(cell_16, 5, 0)
+        initCell(cell_26, 5, 1)
+        initCell(cell_36, 5, 2)
+        initCell(cell_46, 5, 3)
+        initCell(cell_56, 5, 4)
+        initCell(cell_66, 5, 5)
+        initCell(cell_76, 5, 6)
+        initCell(cell_86, 5, 7)
+        initCell(cell_96, 5, 8)
 
         //Row 7
-        initCell(cell_17, grid[6][0])
-        initCell(cell_27, grid[6][1])
-        initCell(cell_37, grid[6][2])
-        initCell(cell_47, grid[6][3])
-        initCell(cell_57, grid[6][4])
-        initCell(cell_67, grid[6][5])
-        initCell(cell_77, grid[6][6])
-        initCell(cell_87, grid[6][7])
-        initCell(cell_97, grid[6][8])
+        initCell(cell_17, 6, 0)
+        initCell(cell_27, 6, 1)
+        initCell(cell_37, 6, 2)
+        initCell(cell_47, 6, 3)
+        initCell(cell_57, 6, 4)
+        initCell(cell_67, 6, 5)
+        initCell(cell_77, 6, 6)
+        initCell(cell_87, 6, 7)
+        initCell(cell_97, 6, 8)
 
         //Row 8
-        initCell(cell_18, grid[7][0])
-        initCell(cell_28, grid[7][1])
-        initCell(cell_38, grid[7][2])
-        initCell(cell_48, grid[7][3])
-        initCell(cell_58, grid[7][4])
-        initCell(cell_68, grid[7][5])
-        initCell(cell_78, grid[7][6])
-        initCell(cell_88, grid[7][7])
-        initCell(cell_98, grid[7][8])
+        initCell(cell_18, 7, 0)
+        initCell(cell_28, 7, 1)
+        initCell(cell_38, 7, 2)
+        initCell(cell_48, 7, 3)
+        initCell(cell_58, 7, 4)
+        initCell(cell_68, 7, 5)
+        initCell(cell_78, 7, 6)
+        initCell(cell_88, 7, 7)
+        initCell(cell_98, 7, 8)
 
         //Row 9
-        initCell(cell_19, grid[8][0])
-        initCell(cell_29, grid[8][1])
-        initCell(cell_39, grid[8][2])
-        initCell(cell_49, grid[8][3])
-        initCell(cell_59, grid[8][4])
-        initCell(cell_69, grid[8][5])
-        initCell(cell_79, grid[8][6])
-        initCell(cell_89, grid[8][7])
-        initCell(cell_99, grid[8][8])
+        initCell(cell_19, 8, 0)
+        initCell(cell_29, 8, 1)
+        initCell(cell_39, 8, 2)
+        initCell(cell_49, 8, 3)
+        initCell(cell_59, 8, 4)
+        initCell(cell_69, 8, 5)
+        initCell(cell_79, 8, 6)
+        initCell(cell_89, 8, 7)
+        initCell(cell_99, 8, 8)
 
     }
 
     fun createPuzzle(difficulty: Int) {
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
         GlobalScope.launch(Dispatchers.Main) {
-            progressBar?.visibility = View.VISIBLE
-            game = Array(9) { IntArray(9) }
-            unsolvedGame = Array(9) { IntArray(9) }
-            val asyncTask = async(Dispatchers.IO) {
-                createPuzzleBackground(difficulty)
-            }
-            asyncTask.await()
-            progressBar?.visibility = View.GONE
-            sudokuOnClickListeners()
-            setUpGrid(game)
-            for (i in 0 until 9) {
-                for (j in 0 until 9) {
-                    unsolvedGame[i][j] =
-                        game[i][j] //unsolvedGame = game, would for some reason bind it that reference
+            if(difficulty == -1){
+                val gridString = sharedPref.getString("game", "")
+                val unsolvedGridString = sharedPref.getString("unsolved", "")
+                if(gridString == ""){
+                    pauseChronometer()
+                    progressBar?.visibility = View.VISIBLE
+                    game = Array(9) { IntArray(9) }
+                    unsolvedGame = Array(9) { IntArray(9) }
+                    val asyncTask = async(Dispatchers.IO) {
+                        createPuzzleBackground(0)
+                    }
+                    asyncTask.await()
+                    progressBar?.visibility = View.GONE
+                    sudokuOnClickListeners()
+                    for (i in 0 until 9) {
+                        for (j in 0 until 9) {
+                            unsolvedGame[i][j] =
+                                game[i][j] //unsolvedGame = game, would for some reason bind it that reference
+                        }
+                    }
+                    setUpGrid(game)
+                    resetChronometer()
+                }else{
+                    val st1 = StringTokenizer(gridString, ",")
+                    val st2 = StringTokenizer(unsolvedGridString, ",")
+                    for (i in 0 until 9){
+                        for (j in 0 until 9){
+                            game[i][j] = st1.nextToken().toInt()
+                            unsolvedGame[i][j] = st2.nextToken().toInt()
+                        }
+                    }
+                    gameDifficulty = sharedPref.getInt("difficulty", -2)
+                    clues = sharedPref.getInt("clues", 81)
+                    pauseOffset = sharedPref.getLong("pause_offset", 0)
+                    sudokuOnClickListeners()
+                    setUpGrid(game)
+                    resumeChronometer()
                 }
+            }else{
+                pauseChronometer()
+                progressBar?.visibility = View.VISIBLE
+                game = Array(9) { IntArray(9) }
+                unsolvedGame = Array(9) { IntArray(9) }
+                val asyncTask = async(Dispatchers.IO) {
+                    createPuzzleBackground(difficulty)
+                }
+                asyncTask.await()
+                progressBar?.visibility = View.GONE
+                sudokuOnClickListeners()
+                for (i in 0 until 9) {
+                    for (j in 0 until 9) {
+                        unsolvedGame[i][j] =
+                            game[i][j] //unsolvedGame = game, would for some reason bind it that reference
+                    }
+                }
+                setUpGrid(game)
+                resetChronometer()
             }
-            stopWatchSeconds = 0
-            stopWatchMinutes = 0
-            //TODO reset chronometer here
-            gameChronometer?.text = "00:00"
         }
     }
 
@@ -215,7 +256,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         numberFragment.arguments = args
         fragmentTransaction.add(R.id.fragmentViewGroup, numberFragment)
         fragmentTransaction.commit()
-        main_constraint_layout.setBackgroundColor(resources.getColor(R.color.main_background))
     }
 
     fun fragmentEgress(number: Int, isMark: Boolean?) {
@@ -228,7 +268,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     if (cellCtx.hasMark(number)) {
                         cellCtx.removeMark(number)
                     } else {
-                        println("mark added")
                         cellCtx.addMark(number)
                     }
                 }
@@ -242,7 +281,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                         colCtx + 1
                     ) //Reapplies listeners when a number is removed from a cell
                 } else if (number in 1..9) {
-                    println("row: $rowCtx, col: $colCtx")
                     game[rowCtx][colCtx] = number
                     cellCtx.text = "$number"
                     cellCtx.removeAllMarks()
@@ -266,12 +304,14 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                         )
                     )
                     pauseChronometer()
+                    game = Array(9) { IntArray(9) }
+                    unsolvedGame = Array(9) { IntArray(9) }
+                    //TODO should remove all click listeners from cells
                 } else {
                     main_constraint_layout.setBackgroundColor(Color.RED)
                 }
             }
         }
-        println(sudoku.isGridFilled(game))
         sudoku.printGame(game)
     }
 
@@ -393,14 +433,20 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         return false
     }
 
-    fun initCell(tv: CellTextView?, n: Int) {
+    fun initCell(tv: CellTextView?, x: Int, y: Int) {
         tv?.setTextColor(Color.BLACK)
         tv?.removeAllMarks()
+        val n = game[x][y]
         if (n > 0) {
-            tv?.setBackgroundColor(resources.getColor(R.color.cellClue))
-            tv?.setOnClickListener { } //This disables the onClickListener
-            tv?.setOnLongClickListener { false }
-            tv?.text = n.toString()
+            if(n == unsolvedGame[x][y]){
+                tv?.setBackgroundColor(resources.getColor(R.color.cellClue))
+                tv?.setOnClickListener { } //This disables the onClickListener
+                tv?.setOnLongClickListener { false }
+                tv?.text = n.toString()
+            }else{
+                tv?.setBackgroundColor(resources.getColor(R.color.cellDefault))
+                tv?.text = n.toString()
+            }
         } else {
             tv?.setBackgroundColor(resources.getColor(R.color.cellDefault))
             tv?.text = " "
@@ -444,6 +490,23 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     override fun onPause() {
         pauseChronometer()
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            val sb1 = StringBuilder()
+            val sb2 = StringBuilder()
+            for (i in 0 until 9){
+                for (j in 0 until 9){
+                    sb1.append(game[i][j].toString() + ",")
+                    sb2.append(unsolvedGame[i][j].toString() + ",")
+                }
+            }
+            putString("game", sb1.toString())
+            putString("unsolved", sb2.toString())
+            putInt("difficulty", gameDifficulty)
+            putInt("clues", clues)
+            putLong("pause_offset", pauseOffset)
+            commit()
+        }
         super.onPause()
     }
 

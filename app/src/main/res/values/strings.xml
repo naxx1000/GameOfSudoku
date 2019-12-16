@@ -8,5 +8,6 @@
     <string name="new_game">New Game</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+    <string name="grid_layout_key">com.rakiwow.gameofsudoku.GRIDLAYOUTKEY</string>
 
 </resources>

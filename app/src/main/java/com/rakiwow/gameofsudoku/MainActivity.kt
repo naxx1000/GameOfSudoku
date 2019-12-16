@@ -45,12 +45,6 @@ class MainActivity : AppCompatActivity() {
         )
         toggle.syncState()
 
-        drawer_button_continue.setOnClickListener {
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START)
-            }
-        }
-
         sharedViewModel = run{
             ViewModelProvider(this)[MainSharedViewModel::class.java]
         }
@@ -59,6 +53,13 @@ class MainActivity : AppCompatActivity() {
 
         //Instead of onClick which causes stuttering. Do these onDrawerClosed
         val args = Bundle()
+        //Continue, so send argument int -1
+        drawer_button_continue.setOnClickListener {
+            drawer.closeDrawer(GravityCompat.START)
+            navController.popBackStack()
+            args.putInt("difficulty", -1) //'-1' means that user has clicked continue
+            navController.navigate(R.id.newGameFragment, args)
+        }
         drawer_diff_1.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
