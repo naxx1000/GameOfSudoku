@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 //Holds LiveData of the app color scheme
 class MainSharedViewModel : ViewModel(){
     val colors = MutableLiveData<IntArray>()
+    var currentFragment: Int? = null
 
     fun setColorsArray(colors: IntArray){
         this.colors.value = colors

@@ -1,9 +1,11 @@
 package com.rakiwow.gameofsudoku
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
@@ -55,15 +57,19 @@ class MainActivity : AppCompatActivity() {
         val args = Bundle()
         //Continue, so send argument int -1
         drawer_button_continue.setOnClickListener {
-            drawer.closeDrawer(GravityCompat.START)
-            navController.popBackStack()
-            args.putInt("difficulty", -1) //'-1' means that user has clicked continue
-            navController.navigate(R.id.newGameFragment, args)
+            if(sharedViewModel.currentFragment == 2){
+                drawer.closeDrawer(GravityCompat.START)
+            }else{
+                drawer.closeDrawer(GravityCompat.START)
+                navController.popBackStack()
+                args.putInt("difficulty", -1) //'-1' means that user has clicked continue
+                navController.navigate(R.id.newGameFragment, args)
+            }
         }
         drawer_diff_1.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
-            args.putInt("difficulty", 0)
+            args.putInt("difficulty", 404)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_2.setOnClickListener {
@@ -157,6 +163,8 @@ class MainActivity : AppCompatActivity() {
         main_toolbar.setTitleTextColor(colorThemeArray[4])
         toggle.drawerArrowDrawable.color = colorThemeArray[4]
         motion_drawer_menu.setBackgroundColor(colorThemeArray[0])
+        window.statusBarColor = colorThemeArray[2]
+        window.navigationBarColor = colorThemeArray[2]
         main_toolbar.setBackgroundColor(colorThemeArray[2])
         drawer_button_continue.setBackgroundColor(colorThemeArray[4])
         drawer_button_newgame.setBackgroundColor(colorThemeArray[4])

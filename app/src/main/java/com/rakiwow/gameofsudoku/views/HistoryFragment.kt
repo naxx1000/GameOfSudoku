@@ -16,7 +16,9 @@ import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import kotlinx.android.synthetic.main.fragment_history.*
 import java.lang.Exception
 
-class HistoryFragments : Fragment() {
+class HistoryFragment : Fragment() {
+
+    val FRAGMENT_ID = 3 //HistoryFragment will have 3 as the ID
 
     private lateinit var adapter: HistoryRecyclerViewAdapter
     private lateinit var historyViewModel: HistoryViewModel
@@ -44,6 +46,7 @@ class HistoryFragments : Fragment() {
         sharedViewModel = activity?.run{
             ViewModelProvider(this).get(MainSharedViewModel::class.java)
         }?: throw Exception("Invalid Activity")
+        sharedViewModel.currentFragment = FRAGMENT_ID
         initLayoutColors()
     }
 

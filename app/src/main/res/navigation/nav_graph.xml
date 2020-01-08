@@ -19,7 +19,7 @@
         app:popUpTo="@+id/gameFragment" />
     <fragment
         android:id="@+id/historyFragments"
-        android:name="com.rakiwow.gameofsudoku.views.HistoryFragments"
+        android:name="com.rakiwow.gameofsudoku.views.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <action

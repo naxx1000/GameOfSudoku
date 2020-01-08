@@ -40,7 +40,7 @@ class MySudoku {
     fun createGame(difficulty: Int): SudokuBoard {
         val maxRemovedCells: Int
         when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
-            0 -> maxRemovedCells = 10 //34
+            0 -> maxRemovedCells = 34
             1 -> maxRemovedCells = 40
             2 -> maxRemovedCells = 46
             3 -> maxRemovedCells = 52
