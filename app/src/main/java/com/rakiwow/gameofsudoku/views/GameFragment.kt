@@ -65,7 +65,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
         initGameLayout()
         initLayoutColors()
-        startChronometer()
     }
 
     //Inserts the values from the grid into each Cell Text View
@@ -172,7 +171,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     }
 
     fun createPuzzle(difficulty: Int) {
-        //TODO Fix: When game is done and you continue, a blank sudoku appears. Should create a new game instead.
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
         GlobalScope.launch(Dispatchers.Main) {
             if(difficulty == -1){ //If user has clicked continue
@@ -184,7 +182,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     game = Array(9) { IntArray(9) }
                     unsolvedGame = Array(9) { IntArray(9) }
                     val asyncTask = async(Dispatchers.IO) {
-                        createPuzzleBackground(0)
+                        createPuzzleBackground(difficulty)
                     }
                     asyncTask.await()
                     progressBar?.visibility = View.GONE
@@ -197,10 +195,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     }
                     setUpGrid()
                     resetChronometer()
+                    startChronometer()
                     isPuzzleComplete = false
-                    println("1")
                 }else{ //If saved game does exist
-                    //TODO Fix: timer resets when continuing a game.
                     val st1 = StringTokenizer(gridString, ",")
                     val st2 = StringTokenizer(unsolvedGridString, ",")
                     for (i in 0 until 9){
@@ -211,11 +208,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     }
                     gameDifficulty = sharedPref.getInt("difficulty", 0)
                     clues = sharedPref.getInt("clues", 81)
-                    //pauseOffset = sharedPref.getLong("pause_offset", 0)
                     sudokuOnClickListeners(false)
                     setUpGrid()
-                    resumeChronometer()
-                    println("2")
                 }
             }else{ //Create new sudoku with a difficulty
                 pauseChronometer()
@@ -236,8 +230,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 }
                 setUpGrid()
                 resetChronometer()
+                startChronometer()
                 isPuzzleComplete = false
-                println("3")
             }
         }
     }
@@ -298,7 +292,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             //Check if user has completed the puzzle
             if (sudoku.isGridFilled(game)) {
                 if (sudoku.validateBoard(game)) {
-                    main_constraint_layout.setBackgroundColor(Color.GREEN)
+                    main_constraint_layout.setBackgroundColor(resources.getColor(R.color.correctSudoku))
                     historyViewModel.insert(
                         SudokuStats(
                             0,
@@ -315,7 +309,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     sudokuOnClickListeners(true)
                     isPuzzleComplete = true
                 } else {
-                    main_constraint_layout.setBackgroundColor(Color.RED)
+                    main_constraint_layout.setBackgroundColor(resources.getColor(R.color.wrongSudoku))
                 }
             }
         }
@@ -483,8 +477,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     fun resumeChronometer() {
         if (!isChronometerRunning) {
+            val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
+            pauseOffset = sharedPref.getLong("pause_offset", 0)
             gameChronometer.base = SystemClock.elapsedRealtime() - pauseOffset
-            println(gameChronometer.base)
             gameChronometer.start()
             isChronometerRunning = true
         }

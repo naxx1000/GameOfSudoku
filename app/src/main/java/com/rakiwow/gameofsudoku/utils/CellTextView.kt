@@ -12,6 +12,7 @@ class CellTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextView(context, attrs, defStyleAttr){
 
+    //TODO have the hitns persist when the app is closed and opened again
     val TAG = "CellTextView"
     val markList = ArrayList<Int>()
     val paint = Paint()
@@ -48,6 +49,7 @@ class CellTextView @JvmOverloads constructor(
 
             for (i in 0 until markList.size){
                 val markPositions = getMarkPosition(markList[i])
+                paint.textAlign = Paint.Align.CENTER
                 canvas?.drawText(markList[i].toString(), markPositions[0], markPositions[1], paint)
             }
         }
@@ -57,42 +59,47 @@ class CellTextView @JvmOverloads constructor(
     fun getMarkPosition(markNumber: Int): FloatArray{
         val x: Float
         val y: Float
+        val p = width/100*0.75f
+        println(p + ((width * 0.85) * 0.25))
+        val pos1 = p + ((width) * 0.25).toFloat()
+        val pos2 = p + ((width) * 0.50).toFloat()
+        val pos3 = p + ((width) * 0.75).toFloat()
         when(markNumber){
             1 -> {
-                x = 12f
-                y = 24f
+                x = pos1
+                y = pos1
             }
             2 -> {
-                x = 40f
-                y = 24f
+                x = pos2
+                y = pos1
             }
             3 -> {
-                x = 66f
-                y = 24f
+                x = pos3
+                y = pos1
             }
             4 -> {
-                x = 12f
-                y = 46f
+                x = pos1
+                y = pos2
             }
             5 -> {
-                x = 40f
-                y = 46f
+                x = pos2
+                y = pos2
             }
             6 -> {
-                x = 66f
-                y = 46f
+                x = pos3
+                y = pos2
             }
             7 -> {
-                x = 12f
-                y = 70f
+                x = pos1
+                y = pos3
             }
             8 -> {
-                x = 40f
-                y = 70f
+                x = pos2
+                y = pos3
             }
             9 -> {
-                x = 66f
-                y = 70f
+                x = pos3
+                y = pos3
             }
             else -> {
                 x = 0f

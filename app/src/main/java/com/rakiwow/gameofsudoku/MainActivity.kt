@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //TODO save the colorThemeArray into sharedpreferences
+        //TODO implement a nice theme choose dialog.
 
         setSupportActionBar(main_toolbar)
         drawer = findViewById(R.id.main_activity_drawer_layout)
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = nav_host_fragment.findNavController()
 
+        //TODO Bug reporting button
         //Instead of onClick which causes stuttering. Do these onDrawerClosed
         val args = Bundle()
         //Continue, so send argument int -1
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val itemId = item?.itemId
+        /*val itemId = item?.itemId
 
         if (itemId == R.id.theme_button) {
             val colorPicker = KoalaColorPicker()
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             colorPicker.show(supportFragmentManager, "ColorPickerDialogFragment")
-        }
+        }*/
 
         return super.onOptionsItemSelected(item)
     }
@@ -170,7 +171,6 @@ class MainActivity : AppCompatActivity() {
         drawer_button_newgame.setBackgroundColor(colorThemeArray[4])
         drawer_button_records.setBackgroundColor(colorThemeArray[4])
         drawer_button_history.setBackgroundColor(colorThemeArray[4])
-        drawer_button_about.setBackgroundColor(colorThemeArray[4])
         drawer_diff_1.setBackgroundColor(colorThemeArray[4])
         drawer_diff_2.setBackgroundColor(colorThemeArray[4])
         drawer_diff_3.setBackgroundColor(colorThemeArray[4])

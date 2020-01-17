@@ -46,7 +46,7 @@ class MySudoku {
             3 -> maxRemovedCells = 52
             4 -> maxRemovedCells = 56
             404 -> maxRemovedCells = 1 //For debugging
-            else -> maxRemovedCells = 58
+            else -> maxRemovedCells = 56
         }
 
         //Variable for the grid with the lowest amount of clues that gets created in the 'improveUpon' loop

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="@color/colorAccent"
+    android:background="@color/drawerBackground"
     app:layoutDescription="@xml/scene_drawer_menu"
     android:clickable="true"
     android:focusable="true"
@@ -15,60 +15,89 @@
         android:id="@+id/drawer_button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/play_continue"/>
+        android:text="@string/play_continue"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_button_newgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_game"/>
+        android:shadowColor="#00000000"
+        android:text="@string/new_game"
+        android:textColor="@color/drawerTextColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_button_records"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_records"/>
+        android:text="@string/my_records"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_button_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_sudoku_history" />
-
-    <Button
-        android:id="@+id/drawer_button_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/about"/>
+        android:text="@string/my_sudoku_history"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_diff_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I'm Too Young To Die" />
+        android:text="I'm Too Young To Die"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_diff_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hurt Me Plenty"/>
+        android:text="Hurt Me Plenty"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_diff_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ultra-Violence"/>
+        android:text="Ultra-Violence"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_diff_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nightmare"/>
+        android:text="Nightmare"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/drawer_diff_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ultra-nightmare"/>
+        android:text="Ultra-nightmare"
+        android:textColor="@color/drawerTextColor"
+        android:textSize="14sp"
+        android:background="@color/buttonColor"
+        style="?android:attr/borderlessButtonStyle"/>
 
 </com.rakiwow.gameofsudoku.utils.MainDrawerContent>

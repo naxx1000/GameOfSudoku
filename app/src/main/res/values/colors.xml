@@ -11,7 +11,10 @@
     <color name="cellClue">#E0E0E0</color>
     <color name="cellMarked">#FFEBA6</color>
     <color name="regionColor">#F5E9E4</color>
-    <color name="textColor">#826A58</color>
+    <color name="textColor">#271E1B</color>
+    <color name="drawerTextColor">#FFFFFF</color>
+    <color name="buttonColor">#826A58</color>
+    <color name="drawerBackground">#B39084</color>
 
     <!-- CORRECT/WRONG SUDOKU -->
     <color name="wrongSudoku">#EF9A9A</color>
