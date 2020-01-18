@@ -7,12 +7,13 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.TextView
+import java.lang.StringBuilder
 
 class CellTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextView(context, attrs, defStyleAttr){
 
-    //TODO have the hitns persist when the app is closed and opened again
+    //TODO have the hints persist when the app is closed and opened again
     val TAG = "CellTextView"
     val markList = ArrayList<Int>()
     val paint = Paint()
@@ -44,7 +45,7 @@ class CellTextView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         if(!markList.isEmpty()){
             paint.color = Color.BLACK
-            paint.textSize = 24f
+            paint.textSize = 28f
             paint.textAlign = Paint.Align.CENTER
 
             for (i in 0 until markList.size){
@@ -59,8 +60,7 @@ class CellTextView @JvmOverloads constructor(
     fun getMarkPosition(markNumber: Int): FloatArray{
         val x: Float
         val y: Float
-        val p = width/100*0.75f
-        println(p + ((width * 0.85) * 0.25))
+        val p = width/100*0.90f
         val pos1 = p + ((width) * 0.25).toFloat()
         val pos2 = p + ((width) * 0.50).toFloat()
         val pos3 = p + ((width) * 0.75).toFloat()
@@ -107,5 +107,26 @@ class CellTextView @JvmOverloads constructor(
             }
         }
         return floatArrayOf(x, y)
+    }
+
+    fun addSetOfMarks(markSet: String){
+        val marks = markSet.split(",")
+        for(mark in marks){
+            println(mark)
+            if(!markList.contains(mark.toInt())){
+                markList.add(mark.toInt())
+            }
+        }
+    }
+
+    fun getSetOfMarks() : String{
+        val sb = StringBuilder()
+        for (mark in markList){
+            sb.append(mark.toString()).append(",")
+        }
+        if(sb.isNotEmpty()){
+            sb.deleteCharAt(sb.length - 1)
+        }
+        return sb.toString()
     }
 }

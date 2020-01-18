@@ -37,7 +37,7 @@ class MySudoku {
         return row
     }
 
-    fun createGame(difficulty: Int): SudokuBoard {
+    fun createGame(difficulty: Int?): SudokuBoard {
         val maxRemovedCells: Int
         when (difficulty) { //The difficulty ranges from 1-10, easy to hardest
             0 -> maxRemovedCells = 34
@@ -46,7 +46,7 @@ class MySudoku {
             3 -> maxRemovedCells = 52
             4 -> maxRemovedCells = 56
             404 -> maxRemovedCells = 1 //For debugging
-            else -> maxRemovedCells = 56
+            else -> maxRemovedCells = 54
         }
 
         //Variable for the grid with the lowest amount of clues that gets created in the 'improveUpon' loop
