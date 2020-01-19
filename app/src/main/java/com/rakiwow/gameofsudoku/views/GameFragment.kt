@@ -64,10 +64,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         createPuzzle(gameDifficulty)
 
         initGameLayout()
-        initLayoutColors()
     }
-
-
 
     fun createPuzzle(difficulty: Int?) {
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
@@ -76,7 +73,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 val gridString = sharedPref.getString("game", "")
                 val unsolvedGridString = sharedPref.getString("unsolved", "")
                 if(isPuzzleComplete){
-                    println("1")
+                    gameDifficulty = sharedPref.getInt("difficulty", -1)
+                    println("Creating new game from solved sudoku with difficulty " + gameDifficulty)
                     pauseChronometer()
                     progressBar?.visibility = View.VISIBLE
                     game = Array(9) { IntArray(9) }
@@ -97,8 +95,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     resetChronometer()
                     startChronometer()
                     isPuzzleComplete = false
+
+                    println("game difficulty: " + gameDifficulty)
+                    difficultyTextView.text = getDifficultyString(gameDifficulty)
                 }else{ //If saved game does exist
-                    println("2")
+                    gameDifficulty = sharedPref.getInt("difficulty", -1)
+                    println("Continuing a previous sudoku with difficulty " + gameDifficulty)
                     val st1 = StringTokenizer(gridString, ",")
                     val st2 = StringTokenizer(unsolvedGridString, ",")
                     val st3 = sharedPref.getString("game_hints", "")?.split(";")
@@ -120,9 +122,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     clues = sharedPref.getInt("clues", 81)
                     sudokuOnClickListeners(false)
                     setUpGrid(false)
+
+                    println("game difficulty: " + gameDifficulty)
+                    difficultyTextView.text = getDifficultyString(gameDifficulty)
                 }
             }else{ //Create new sudoku with a difficulty
-                println("3")
+                println("Creating a new sudoku with difficulty " + gameDifficulty)
                 pauseChronometer()
                 progressBar?.visibility = View.VISIBLE
                 game = Array(9) { IntArray(9) }
@@ -143,6 +148,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 resetChronometer()
                 startChronometer()
                 isPuzzleComplete = false
+
+                println("game difficulty: " + gameDifficulty)
+                difficultyTextView.text = getDifficultyString(gameDifficulty)
             }
         }
     }
@@ -323,17 +331,25 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     override fun onPause() {
         pauseChronometer()
-        val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()){
+        saveGameState()
+        super.onPause()
+    }
+
+    private fun saveGameState() {
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.grid_layout_key),
+            Context.MODE_PRIVATE
+        ) ?: return
+        with(sharedPref.edit()) {
             val sb1 = StringBuilder()
             val sb2 = StringBuilder()
             val sb3 = StringBuilder()
-            for (i in 0 until 9){
-                for (j in 0 until 9){
+            for (i in 0 until 9) {
+                for (j in 0 until 9) {
                     sb1.append(game[i][j].toString())
                     sb2.append(unsolvedGame[i][j].toString())
                     sb3.append(getCellAt(i + 1, j + 1)?.getSetOfMarks())
-                    if(!(i == 8 && j == 8)){
+                    if (!(i == 8 && j == 8)) {
                         sb1.append(",")
                         sb2.append(",")
                         sb3.append(";")
@@ -349,7 +365,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             putString("game_hints", sb3.toString())
             commit()
         }
-        super.onPause()
     }
 
     override fun onResume() {
@@ -357,14 +372,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         resumeChronometer()
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
         isPuzzleComplete = sharedPref.getBoolean("isPuzzleComplete", false)
-    }
-
-
-    fun initLayoutColors() {
-        sharedViewModel.colors.observe(viewLifecycleOwner, androidx.lifecycle.Observer<IntArray>{ colors ->
-            main_constraint_layout.setBackgroundColor(colors[1])
-            gameChronometer.setTextColor(colors[4])
-        })
     }
 
     fun getCellAt(row: Int, col: Int): CellTextView? {
@@ -379,13 +386,14 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             2 -> return "ULTRA-VIOLENCE"
             3 -> return "NIGHTMARE"
             4 -> return "ULTRA-NIGHTMARE"
+            404 -> return "TEST"
+            -1 -> return "DEFAULT DIFFICULTY"
             else -> return "???"
         }
     }
 
     //Configures the layout to fit either portrait or landscape mode
     fun initGameLayout() {
-        difficultyTextView.text = getDifficultyString(gameDifficulty)
         mainGrid.post {
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 //Gridlayout
@@ -444,25 +452,25 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 val constraintSet = ConstraintSet()
                 //Chronometer
                 constraintSet.connect(
-                    gameChronometer.id,
+                    gameInfoLayout.id,
                     ConstraintSet.RIGHT,
                     mainGrid.id,
                     ConstraintSet.LEFT
                 )
                 constraintSet.connect(
-                    gameChronometer.id,
+                    gameInfoLayout.id,
                     ConstraintSet.TOP,
                     ConstraintSet.PARENT_ID,
                     ConstraintSet.TOP
                 )
                 constraintSet.connect(
-                    gameChronometer.id,
+                    gameInfoLayout.id,
                     ConstraintSet.BOTTOM,
                     ConstraintSet.PARENT_ID,
                     ConstraintSet.BOTTOM
                 )
                 constraintSet.connect(
-                    gameChronometer.id,
+                    gameInfoLayout.id,
                     ConstraintSet.LEFT,
                     ConstraintSet.PARENT_ID,
                     ConstraintSet.LEFT

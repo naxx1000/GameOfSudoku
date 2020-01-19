@@ -47,12 +47,5 @@ class HistoryFragment : Fragment() {
             ViewModelProvider(this).get(MainSharedViewModel::class.java)
         }?: throw Exception("Invalid Activity")
         sharedViewModel.currentFragment = FRAGMENT_ID
-        initLayoutColors()
-    }
-
-    fun initLayoutColors() {
-        sharedViewModel.colors.observe(viewLifecycleOwner, androidx.lifecycle.Observer<IntArray>{ colors ->
-            history_background_layout.setBackgroundColor(colors[1])
-        })
     }
 }

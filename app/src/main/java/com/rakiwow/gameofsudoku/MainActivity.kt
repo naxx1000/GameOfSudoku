@@ -23,16 +23,10 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    val colorToHarmonyColors = ColorToHarmonyColors()
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawer: DrawerLayout
-    private var cursorPos: Int? = null
     private lateinit var sharedViewModel: MainSharedViewModel
     private lateinit var colorThemeArray: IntArray
-
-    companion object {
-        private var mIsDarkMode: Boolean? = null
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,72 +103,11 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        /*val itemId = item?.itemId
-
-        if (itemId == R.id.theme_button) {
-            val colorPicker = KoalaColorPicker()
-                .setTitle("Select a theme color")
-                .setHasDarkModeOption(true)
-                .setAcceptButtonColor(resources.getColor(R.color.colorAccent))
-                .setDialogBackgroundColor(resources.getColor(R.color.colorPrimary))
-                .setTextColor(resources.getColor(R.color.colorPrimaryDark))
-                .setSwitchDefaultValue(mIsDarkMode)
-                .setCursorPosition(cursorPos)
-                .setDarkModeIntensity(180)
-                .setLightModeIntensity(195)
-
-            colorPicker.setOnSwitchClickListener(object : KoalaColorPicker.OnSwitchClickListener {
-                override fun onSwitchClick(isDarkMode: Boolean?) {
-                    mIsDarkMode = isDarkMode
-                }
-            })
-
-            colorPicker.setOnAcceptColorListener(object : KoalaColorPicker.OnAcceptColorListener {
-                override fun onAcceptColor(colorInt: Int, cursorPosition: Int?) {
-
-                    cursorPos = cursorPosition
-                    colorThemeArray = colorToHarmonyColors.complementary(colorInt, mIsDarkMode)
-                    sharedViewModel.setColorsArray(colorThemeArray)
-
-                    paintMainActivityViews()
-                }
-            })
-            colorPicker.show(supportFragmentManager, "ColorPickerDialogFragment")
-        }*/
-
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
-    }
-
-    fun paintMainActivityViews(){
-        val unwrappedDrawable = AppCompatResources.getDrawable(this@MainActivity, R.drawable.ic_color_lens_white_24dp)
-        if(unwrappedDrawable != null){
-            val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable)
-            DrawableCompat.setTint(wrappedDrawable, colorThemeArray[4])
-            invalidateOptionsMenu()
-        }
-        main_toolbar.setTitleTextColor(colorThemeArray[4])
-        toggle.drawerArrowDrawable.color = colorThemeArray[4]
-        motion_drawer_menu.setBackgroundColor(colorThemeArray[0])
-        window.statusBarColor = colorThemeArray[2]
-        window.navigationBarColor = colorThemeArray[2]
-        main_toolbar.setBackgroundColor(colorThemeArray[2])
-        drawer_button_continue.setBackgroundColor(colorThemeArray[4])
-        drawer_button_newgame.setBackgroundColor(colorThemeArray[4])
-        drawer_button_records.setBackgroundColor(colorThemeArray[4])
-        drawer_button_history.setBackgroundColor(colorThemeArray[4])
-        drawer_diff_1.setBackgroundColor(colorThemeArray[4])
-        drawer_diff_2.setBackgroundColor(colorThemeArray[4])
-        drawer_diff_3.setBackgroundColor(colorThemeArray[4])
-        drawer_diff_4.setBackgroundColor(colorThemeArray[4])
-        drawer_diff_5.setBackgroundColor(colorThemeArray[4])
     }
 }
