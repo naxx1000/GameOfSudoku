@@ -28,6 +28,7 @@
         android:shadowColor="#00000000"
         android:text="@string/new_game"
         android:textColor="@color/drawerTextColor"
+        android:drawableStart="@drawable/ic_arrow_back_24dp"
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button

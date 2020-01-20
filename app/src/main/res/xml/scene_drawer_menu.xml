@@ -22,7 +22,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_continue"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/play_continue"
             android:translationY="1000dp"
@@ -33,7 +33,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_newgame"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/new_game"
             android:translationY="1100dp"
@@ -51,7 +51,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_records"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_records"
             android:translationY="1200dp"
@@ -62,7 +62,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_history"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_sudoku_history"
             android:translationY="1300dp"
@@ -73,10 +73,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_1"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="I'm Too Young To Die"
-            android:translationX="-700dp"
+            android:translationY="1000dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_2"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -84,10 +84,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_2"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hurt Me Plenty"
-            android:translationX="-750dp"
+            android:translationY="1050dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_3"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -95,10 +95,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_3"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-Violence"
-            android:translationX="-800dp"
+            android:translationY="1100dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_4"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -106,10 +106,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_4"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nightmare"
-            android:translationX="-850dp"
+            android:translationY="1150dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_5"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -117,10 +117,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_5"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-nightmare"
-            android:translationX="-900dp"
+            android:translationY="1200dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_continue"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/play_continue"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_newgame"
@@ -142,7 +142,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_newgame"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/new_game"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_records"
@@ -159,7 +159,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_records"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_records"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_history"
@@ -169,7 +169,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_history"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_sudoku_history"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -180,10 +180,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_1"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="I'm Too Young To Die"
-            android:translationX="-700dp"
+            android:translationY="1000dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_2"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -191,10 +191,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_2"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hurt Me Plenty"
-            android:translationX="-750dp"
+            android:translationY="1050dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_3"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -202,10 +202,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_3"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-Violence"
-            android:translationX="-800dp"
+            android:translationY="1100dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_4"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -213,10 +213,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_4"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nightmare"
-            android:translationX="-850dp"
+            android:translationY="1150dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_5"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -224,10 +224,10 @@
 
         <Constraint
             android:id="@+id/drawer_diff_5"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-nightmare"
-            android:translationX="-900dp"
+            android:translationY="1200dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -239,7 +239,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_continue"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/play_continue"
             android:translationY="1000dp"
@@ -266,7 +266,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_records"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_records"
             android:translationY="1200dp"
@@ -277,7 +277,7 @@
 
         <Constraint
             android:id="@+id/drawer_button_history"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_sudoku_history"
             android:translationY="1300dp"
@@ -289,7 +289,7 @@
 
         <Constraint
             android:id="@+id/drawer_diff_1"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="I'm Too Young To Die"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_3"
@@ -299,7 +299,7 @@
 
         <Constraint
             android:id="@+id/drawer_diff_2"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hurt Me Plenty"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_3"
@@ -309,7 +309,7 @@
 
         <Constraint
             android:id="@+id/drawer_diff_3"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-Violence"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_4"
@@ -319,7 +319,7 @@
 
         <Constraint
             android:id="@+id/drawer_diff_4"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nightmare"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_5"
@@ -329,7 +329,7 @@
 
         <Constraint
             android:id="@+id/drawer_diff_5"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ultra-nightmare"
             motion:layout_constraintBottom_toBottomOf="parent"

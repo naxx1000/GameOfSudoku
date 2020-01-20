@@ -112,7 +112,6 @@ class CellTextView @JvmOverloads constructor(
     fun addSetOfMarks(markSet: String){
         val marks = markSet.split(",")
         for(mark in marks){
-            println(mark)
             if(!markList.contains(mark.toInt())){
                 markList.add(mark.toInt())
             }

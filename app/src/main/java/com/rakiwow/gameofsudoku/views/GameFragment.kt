@@ -80,7 +80,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     game = Array(9) { IntArray(9) }
                     unsolvedGame = Array(9) { IntArray(9) }
                     val asyncTask = async(Dispatchers.IO) {
-                        createPuzzleBackground(difficulty)
+                        createPuzzleBackground(gameDifficulty)
                     }
                     asyncTask.await()
                     progressBar?.visibility = View.GONE
@@ -374,12 +374,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         isPuzzleComplete = sharedPref.getBoolean("isPuzzleComplete", false)
     }
 
-    fun getCellAt(row: Int, col: Int): CellTextView? {
+    private fun getCellAt(row: Int, col: Int): CellTextView? {
         val id = resources.getIdentifier("cell_" + col + row, "id", context?.packageName)
         return activity?.findViewById(id)
     }
 
-    fun getDifficultyString(difficulty: Int) : String{
+    private fun getDifficultyString(difficulty: Int) : String{
         when(difficulty){
             0 -> return "I'M TOO YOUNG TO DIE"
             1 -> return "HURT ME PLENTY"
@@ -393,7 +393,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     }
 
     //Configures the layout to fit either portrait or landscape mode
-    fun initGameLayout() {
+    private fun initGameLayout() {
         mainGrid.post {
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 //Gridlayout

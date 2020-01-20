@@ -26,4 +26,13 @@
         android:id="@+id/toHistoryFragment"
         app:destination="@id/historyFragments"
         app:popUpTo="@+id/historyFragments" />
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.rakiwow.gameofsudoku.views.RecordsFragment"
+        android:label="fragment_records"
+        tools:layout="@layout/fragment_records" />
+    <action
+        android:id="@+id/toRecordsFragment"
+        app:destination="@id/recordsFragment"
+        app:popUpTo="@+id/recordsFragment" />
 </navigation>

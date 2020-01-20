@@ -91,6 +91,11 @@ class MainActivity : AppCompatActivity() {
             args.putInt("difficulty", 4)
             navController.navigate(R.id.newGameFragment, args)
         }
+        drawer_button_records.setOnClickListener {
+            drawer.closeDrawer(GravityCompat.START)
+            navController.popBackStack()
+            navController.navigate(R.id.toRecordsFragment)
+        }
         drawer_button_history.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()

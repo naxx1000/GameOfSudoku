@@ -24,4 +24,8 @@ class SudokuStatsRepository (private val sudokuStatsDao: SudokuStatsDao){
     suspend fun delete(sudokuStats: SudokuStats){
         sudokuStatsDao.delete(sudokuStats)
     }
+
+    suspend fun getEachRecord(){
+
+    }
 }

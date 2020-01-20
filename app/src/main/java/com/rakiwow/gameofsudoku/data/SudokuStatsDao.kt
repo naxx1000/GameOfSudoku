@@ -14,6 +14,9 @@ interface SudokuStatsDao {
     @Query("SELECT * FROM stats WHERE difficulty LIKE :difficulty ORDER BY date DESC")
     fun getByDifficulty(difficulty: Int): LiveData<List<SudokuStats>>
 
+    @Query("SELECT DISTINCT 'difficulty', 'date', 'completedTime' FROM stats WHERE ")
+    suspend fun getEachRecord()
+
     @Query("DELETE FROM stats")
     suspend fun deleteAll()
 
