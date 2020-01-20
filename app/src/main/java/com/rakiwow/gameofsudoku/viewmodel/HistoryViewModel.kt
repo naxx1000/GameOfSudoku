@@ -20,11 +20,6 @@ class HistoryViewModel (application: Application) : AndroidViewModel(application
         statsData = repository.allData
     }
 
-    //We use viewModelScope.launch to call a suspended function
-    fun getByDifficulty(difficulty: Int) = viewModelScope.launch {
-        repository.getByDifficulty(difficulty)
-    }
-
     fun insert(sudokuStats: SudokuStats) = viewModelScope.launch {
         repository.insert(sudokuStats)
     }

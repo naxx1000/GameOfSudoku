@@ -6,13 +6,9 @@ import androidx.lifecycle.LiveData
 class SudokuStatsRepository (private val sudokuStatsDao: SudokuStatsDao){
     //Room will query the live data on a separate thread, and notify the observer when data has changed.
     val allData: LiveData<List<SudokuStats>> = sudokuStatsDao.getAll()
-    lateinit var difficultyFilterData: LiveData<List<SudokuStats>>
+    val recordData: LiveData<List<SudokuStats>> = sudokuStatsDao.getEachRecord()
 
     //Suspend modifiers are used to tell the compiler to call from a coroutine or another suspending function
-    suspend fun getByDifficulty(difficulty: Int){
-        sudokuStatsDao.getByDifficulty(difficulty)
-    }
-
     suspend fun deleteAll(){
         sudokuStatsDao.deleteAll()
     }
@@ -26,6 +22,6 @@ class SudokuStatsRepository (private val sudokuStatsDao: SudokuStatsDao){
     }
 
     suspend fun getEachRecord(){
-
+        sudokuStatsDao.getEachRecord()
     }
 }
