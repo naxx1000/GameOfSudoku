@@ -13,7 +13,6 @@ class CellTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : TextView(context, attrs, defStyleAttr){
 
-    //TODO have the hints persist when the app is closed and opened again
     val TAG = "CellTextView"
     val markList = ArrayList<Int>()
     val paint = Paint()

@@ -14,7 +14,6 @@ class SudokuCanvasView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr){
 
-    //TODO change to a prettier sudoku grid.
     val paint: Paint = Paint()
     var grid: Array<IntArray>? = Array(9) { IntArray(9) }
 
