@@ -26,12 +26,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawer: DrawerLayout
     private lateinit var sharedViewModel: MainSharedViewModel
-    private lateinit var colorThemeArray: IntArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //TODO implement a nice theme choose dialog.
 
         setSupportActionBar(main_toolbar)
         drawer = findViewById(R.id.main_activity_drawer_layout)
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         val args = Bundle()
         //Continue, so send argument int -1
         drawer_button_continue.setOnClickListener {
-            if(sharedViewModel.currentFragment == 2){
+            if(sharedViewModel.currentFragment == 1){
                 drawer.closeDrawer(GravityCompat.START)
             }else{
                 drawer.closeDrawer(GravityCompat.START)

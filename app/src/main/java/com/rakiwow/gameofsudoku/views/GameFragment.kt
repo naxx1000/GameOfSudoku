@@ -12,6 +12,7 @@ import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
 import android.os.SystemClock
+import android.widget.Chronometer
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +28,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     val sudoku: MySudoku = MySudoku()
     val numberFragment = NumberPickerFragment()
-    val FRAGMENT_ID = 2 //Gamefragment will have 2 as the ID
+    val FRAGMENT_ID = 1 //Gamefragment will have 2 as the ID
 
     var isPuzzleComplete: Boolean = false
     var rowCtx: Int = 0
@@ -62,6 +63,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         gameDifficulty = arguments!!.getInt("difficulty", -1)
 
         createPuzzle(gameDifficulty)
+
+        gameChronometer.setOnChronometerTickListener {
+            if((SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt() % 10 == 0){
+                println((SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt())
+            }
+        }
 
         initGameLayout()
     }

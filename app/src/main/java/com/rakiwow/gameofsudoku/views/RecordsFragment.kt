@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.rakiwow.gameofsudoku.R
 import com.rakiwow.gameofsudoku.data.SudokuStats
+import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import com.rakiwow.gameofsudoku.viewmodel.RecordsViewModel
 import kotlinx.android.synthetic.main.fragment_records.*
+import java.lang.Exception
 import java.lang.StringBuilder
 import java.text.DateFormat
 import java.util.*
@@ -21,6 +23,8 @@ class RecordsFragment : Fragment() {
 
     private lateinit var recordsViewModel: RecordsViewModel
     private lateinit var dateFormat: DateFormat
+    private lateinit var sharedViewModel: MainSharedViewModel
+    val FRAGMENT_ID = 2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +42,10 @@ class RecordsFragment : Fragment() {
         recordsViewModel.recordData.observe(viewLifecycleOwner, Observer{ stats ->
             stats?.let{handleRecords(it)}
         })
+        sharedViewModel = activity?.run{
+            ViewModelProvider(this).get(MainSharedViewModel::class.java)
+        }?: throw Exception("Invalid Activity")
+        sharedViewModel.currentFragment = FRAGMENT_ID
     }
 
     fun handleRecords(records: List<SudokuStats>){
