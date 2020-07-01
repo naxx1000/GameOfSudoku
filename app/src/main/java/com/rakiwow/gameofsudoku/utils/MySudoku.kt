@@ -83,9 +83,9 @@ class MySudoku {
             }
         }
 
-        println("Clues: " + cluesCountHardestGrid)
+        /*println("Clues: " + cluesCountHardestGrid)
         println("Removed cells: " + (81 - cluesCountHardestGrid))
-        println("Actual clues: " + actualClues())
+        println("Actual clues: " + actualClues())*/
         unsolvedGrid = gridHardest
         return SudokuBoard(gridHardest, actualClues())
     }

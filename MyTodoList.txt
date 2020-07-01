@@ -1,0 +1,8 @@
+Vise at alle 9 tal af et tal er placeret i puzzle
+Overvej flere hjælpemidler for brugeren at se hvilket tal han har lagt forkert m.m.
+
+
+Records screen skal være scrollable
+Back button skal være hvid
+Ny font til bedre at kunne se tal
+Puzzle resetter når man roterere skærmen og difficulty ikke er "-1"

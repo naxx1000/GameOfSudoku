@@ -34,6 +34,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     var rowCtx: Int = 0
     var colCtx: Int = 0
     private var gameDifficulty = -1
+    private var isGameContinued = true
     var pauseOffset: Long = 0L
     var hasRadialFragmentLaunched = false
     var isChronometerRunning = false
@@ -60,15 +61,12 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             ViewModelProvider(this).get(MainSharedViewModel::class.java)
         }?: throw Exception("Invalid Activity")
         sharedViewModel.currentFragment = FRAGMENT_ID
+        isGameContinued = arguments!!.getBoolean("isGameContinued", true)
+        arguments!!.remove("isGameContinued")
         gameDifficulty = arguments!!.getInt("difficulty", -1)
 
+        println("Continued: " + isGameContinued)
         createPuzzle(gameDifficulty)
-
-        gameChronometer.setOnChronometerTickListener {
-            if((SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt() % 10 == 0){
-                println((SystemClock.elapsedRealtime() - gameChronometer.base).div(1000).toInt())
-            }
-        }
 
         initGameLayout()
     }
@@ -76,7 +74,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     fun createPuzzle(difficulty: Int?) {
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
         GlobalScope.launch(Dispatchers.Main) {
-            if(difficulty == -1){ //If a game is continued
+            if(isGameContinued){ //If a game is continued
                 val gridString = sharedPref.getString("game", "")
                 val unsolvedGridString = sharedPref.getString("unsolved", "")
                 if(isPuzzleComplete){
@@ -130,7 +128,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     sudokuOnClickListeners(false)
                     setUpGrid(false)
 
-                    println("game difficulty: " + gameDifficulty)
                     difficultyTextView.text = getDifficultyString(gameDifficulty)
                 }
             }else{ //Create new sudoku with a difficulty
@@ -154,9 +151,9 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 setUpGrid(true)
                 resetChronometer()
                 startChronometer()
+                isGameContinued = true
                 isPuzzleComplete = false
 
-                println("game difficulty: " + gameDifficulty)
                 difficultyTextView.text = getDifficultyString(gameDifficulty)
             }
         }

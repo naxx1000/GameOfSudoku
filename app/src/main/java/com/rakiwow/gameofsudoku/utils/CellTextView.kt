@@ -4,14 +4,17 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.Log
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
+import com.rakiwow.gameofsudoku.R
 import java.lang.StringBuilder
 
 class CellTextView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : TextView(context, attrs, defStyleAttr){
+) : androidx.appcompat.widget.AppCompatTextView(context, attrs, defStyleAttr){
 
     val TAG = "CellTextView"
     val markList = ArrayList<Int>()
@@ -46,6 +49,7 @@ class CellTextView @JvmOverloads constructor(
             paint.color = Color.BLACK
             paint.textSize = 28f
             paint.textAlign = Paint.Align.CENTER
+            paint.typeface = ResourcesCompat.getFont(context, R.font.sanchezregular)
 
             for (i in 0 until markList.size){
                 val markPositions = getMarkPosition(markList[i])

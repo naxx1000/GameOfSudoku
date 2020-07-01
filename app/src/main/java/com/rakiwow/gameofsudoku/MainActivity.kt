@@ -55,37 +55,42 @@ class MainActivity : AppCompatActivity() {
             }else{
                 drawer.closeDrawer(GravityCompat.START)
                 navController.popBackStack()
-                args.putInt("difficulty", -1) //'-1' means that user has clicked continue
+                args.putBoolean("isGameContinued", true)
                 navController.navigate(R.id.newGameFragment, args)
             }
         }
         drawer_diff_1.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
+            args.putBoolean("isGameContinued", false)
             args.putInt("difficulty", 404)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_2.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
+            args.putBoolean("isGameContinued", false)
             args.putInt("difficulty", 1)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_3.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
+            args.putBoolean("isGameContinued", false)
             args.putInt("difficulty", 2)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_4.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
+            args.putBoolean("isGameContinued", false)
             args.putInt("difficulty", 3)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_5.setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
+            args.putBoolean("isGameContinued", false)
             args.putInt("difficulty", 4)
             navController.navigate(R.id.newGameFragment, args)
         }
