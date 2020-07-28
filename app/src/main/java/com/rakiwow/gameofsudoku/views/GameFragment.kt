@@ -12,6 +12,7 @@ import com.rakiwow.gameofsudoku.utils.MySudoku
 import java.util.*
 import android.graphics.Color
 import android.os.SystemClock
+import android.util.Log
 import android.widget.Chronometer
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -23,6 +24,8 @@ import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.coroutines.*
 import java.lang.Exception
+
+private const val TAG = "GameFragment"
 
 class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
@@ -55,6 +58,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        pauseOffset = savedInstanceState?.getLong("pause_offset", 0) ?: 0
 
         historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
         sharedViewModel = activity?.run{
@@ -236,6 +241,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                 }
             }
         }
+        saveGameState()
     }
 
     override fun onNumberSelect(number: Int, isMark: Boolean?) {
@@ -308,6 +314,10 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             gameChronometer.base = SystemClock.elapsedRealtime()
             gameChronometer.start()
             isChronometerRunning = true
+
+            Log.d(TAG, "Chronometer started")
+
+            setChronometerTickListener()
         }
     }
 
@@ -326,6 +336,26 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             gameChronometer.base = SystemClock.elapsedRealtime() - pauseOffset
             gameChronometer.start()
             isChronometerRunning = true
+
+            Log.d(TAG, "Chronometer resumed")
+
+            setChronometerTickListener()
+        }
+    }
+
+    private fun setChronometerTickListener() {
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.grid_layout_key),
+            Context.MODE_PRIVATE
+        ) ?: return
+        if (gameChronometer.onChronometerTickListener == null) {
+            gameChronometer.setOnChronometerTickListener {
+                if ((((SystemClock.elapsedRealtime() - it.base) / 1000) % 20).toInt() == 0) {
+                    Log.i(TAG, "Chronometer Tick: Time saved")
+                    pauseOffset = SystemClock.elapsedRealtime() - gameChronometer.base
+                    sharedPref.edit().putLong("pause_offset", pauseOffset).apply()
+                }
+            }
         }
     }
 
@@ -374,8 +404,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     override fun onResume() {
         super.onResume()
-        resumeChronometer()
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
+        resumeChronometer()
         isPuzzleComplete = sharedPref.getBoolean("isPuzzleComplete", false)
     }
 

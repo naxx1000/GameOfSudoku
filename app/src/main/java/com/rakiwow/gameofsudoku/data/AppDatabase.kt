@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 
 @Database(entities = arrayOf(SudokuStats::class), version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
+
     abstract fun sudokuStatsDao(): SudokuStatsDao
 
     companion object{
@@ -43,7 +44,6 @@ abstract class AppDatabase : RoomDatabase(){
         }
 
         suspend fun populateDatabase(statsDao: SudokuStatsDao){
-
             statsDao.deleteAll()
         }
     }
