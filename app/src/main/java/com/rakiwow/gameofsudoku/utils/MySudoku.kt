@@ -1,7 +1,10 @@
 package com.rakiwow.gameofsudoku.utils
 
+import android.util.Log
 import com.rakiwow.gameofsudoku.data.SudokuBoard
 import java.util.*
+
+private const val TAG = "MySudoku"
 
 class MySudoku {
 
@@ -306,6 +309,27 @@ class MySudoku {
             }
         }
         return true
+    }
+
+    fun getClearedNumbersList(board: Array<IntArray>): BooleanArray{
+        val numberCountList = IntArray(9)
+        for (i in 0 until 9) {
+            for (j in 0 until 9) {
+                if (board[i][j] != 0){
+                    numberCountList[board[i][j] - 1] = numberCountList[board[i][j] - 1] + 1
+                }
+            }
+        }
+        for (i in 0 until 9) {
+            Log.d(TAG, (i + 1).toString() + ": " + numberCountList[i])
+        }
+        val clearedNumbersList = BooleanArray(9)
+        for (i in 0 until 9) {
+            if(numberCountList[i] >= 9){
+                clearedNumbersList[i] = true
+            }
+        }
+        return clearedNumbersList
     }
 
     //Counts the amount of cells that are not zero (Filled cells)

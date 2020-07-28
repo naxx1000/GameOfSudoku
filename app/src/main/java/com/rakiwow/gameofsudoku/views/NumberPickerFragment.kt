@@ -24,11 +24,15 @@ class NumberPickerFragment: Fragment() {
 
         val isMark = arguments?.getBoolean("isMark", false)
         val markList = arguments?.getIntegerArrayList("markList")
+        val clearedNumbersList = arguments?.getBooleanArray("clearedNumbers")
         val listener = parentFragment as? OnNumberSelectListener
 
         if(isMark == null || isMark){
             colorMarkedNumbers(markList)
+        }else{
+            colorClearedNumbers(clearedNumbersList)
         }
+
         noNumber.setOnClickListener { listener?.onNumberSelect(0, isMark) }
         numberOne.setOnClickListener { listener?.onNumberSelect(1, isMark) }
         numberTwo.setOnClickListener { listener?.onNumberSelect(2, isMark) }
@@ -44,6 +48,25 @@ class NumberPickerFragment: Fragment() {
 
     interface OnNumberSelectListener{
         fun onNumberSelect(number: Int, isMark: Boolean?)
+    }
+
+    fun colorClearedNumbers(clearedNumbersList: BooleanArray?){
+        for (i in 0 until clearedNumbersList!!.size){
+            if (clearedNumbersList[i]) {
+                when(i){
+                    0 -> numberOne.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    1 -> numberTwo.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    2 -> numberThree.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    3 -> numberFour.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    4 -> numberFive.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    5 -> numberSix.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    6 -> numberSeven.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    7 -> numberEight.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                    8 -> numberNine.setBackground(resources.getDrawable(R.drawable.number_choices_cleared))
+                }
+            }
+        }
+
     }
 
     fun colorMarkedNumbers(markList: ArrayList<Int>?){

@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         val navController = nav_host_fragment.findNavController()
 
         //TODO Bug reporting button
+        //TODO Menu buttons are out of window upon process death
         //Instead of onClick which causes stuttering. Do these onDrawerClosed
         val args = Bundle()
         //Continue, so send argument int -1
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
             args.putBoolean("isGameContinued", false)
-            args.putInt("difficulty", 404)
+            args.putInt("difficulty", 0)
             navController.navigate(R.id.newGameFragment, args)
         }
         drawer_diff_2.setOnClickListener {

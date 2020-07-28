@@ -74,8 +74,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     fun createPuzzle(difficulty: Int?) {
         val sharedPref = activity?.getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
         GlobalScope.launch(Dispatchers.Main) {
-            if(isGameContinued){ //If a game is continued
-                val gridString = sharedPref.getString("game", "")
+            val gridString = sharedPref.getString("game", "")
+            if(isGameContinued && gridString != ""){ //If a game is continued
                 val unsolvedGridString = sharedPref.getString("unsolved", "")
                 if(isPuzzleComplete){
                     gameDifficulty = sharedPref.getInt("difficulty", -1)
@@ -105,7 +105,6 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     difficultyTextView.text = getDifficultyString(gameDifficulty)
                 }else{ //If saved game does exist
                     gameDifficulty = sharedPref.getInt("difficulty", -1)
-                    println("Continuing a previous sudoku with difficulty " + gameDifficulty)
                     val st1 = StringTokenizer(gridString, ",")
                     val st2 = StringTokenizer(unsolvedGridString, ",")
                     val st3 = sharedPref.getString("game_hints", "")?.split(";")
@@ -175,6 +174,8 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         val args = Bundle()
         args.putBoolean("isMark", isMark)
         args.putIntegerArrayList("markList", cellCtx.markList)
+        val clearedNumbersList = sudoku.getClearedNumbersList(game)
+        args.putBooleanArray("clearedNumbers", clearedNumbersList)
         numberFragment.arguments = args
         fragmentTransaction.add(R.id.fragmentViewGroup, numberFragment)
         fragmentTransaction.commit()

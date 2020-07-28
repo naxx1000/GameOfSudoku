@@ -1,7 +1,10 @@
-Vise at alle 9 tal af et tal er placeret i puzzle
+Vise tal i bunden som indikere at 9 af talet er placeret
 Overvej flere hjælpemidler for brugeren at se hvilket tal han har lagt forkert m.m.
+Fjern marker fra tal i regionen når tallet er indsat i en celle
+hvis der er en fejl når brættet er udfyldt, så vis cellen med fejl
+gem hvert 10. sekund
 
-
+Vise at alle 9 tal af et tal er placeret i puzzle
 Records screen skal være scrollable
 Back button skal være hvid
 Ny font til bedre at kunne se tal
