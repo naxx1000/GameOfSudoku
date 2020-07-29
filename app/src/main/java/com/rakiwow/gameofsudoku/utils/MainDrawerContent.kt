@@ -18,15 +18,15 @@ class MainDrawerContent @kotlin.jvm.JvmOverloads constructor(
     }
 
     override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-        progress = slideOffset
+
     }
 
     override fun onDrawerClosed(drawerView: View) {
-        motion_drawer_menu.setTransition(R.id.start, R.id.end)
+        motion_drawer_menu.transitionToStart()
+        motion_drawer_menu.progress = 0f
     }
 
     override fun onDrawerOpened(drawerView: View) {
-
     }
 
     override fun onAttachedToWindow() {

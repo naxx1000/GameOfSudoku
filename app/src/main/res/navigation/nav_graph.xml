@@ -35,4 +35,13 @@
         android:id="@+id/toRecordsFragment"
         app:destination="@id/recordsFragment"
         app:popUpTo="@+id/recordsFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.rakiwow.gameofsudoku.views.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <action
+        android:id="@+id/toAboutFragment"
+        app:destination="@+id/aboutFragment"
+        app:popUpTo="@+id/aboutFragment" />
 </navigation>

@@ -19,12 +19,13 @@ import java.lang.StringBuilder
 import java.text.DateFormat
 import java.util.*
 
+private const val FRAGMENT_ID = 2
+
 class RecordsFragment : Fragment() {
 
     private lateinit var recordsViewModel: RecordsViewModel
     private lateinit var dateFormat: DateFormat
     private lateinit var sharedViewModel: MainSharedViewModel
-    val FRAGMENT_ID = 2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

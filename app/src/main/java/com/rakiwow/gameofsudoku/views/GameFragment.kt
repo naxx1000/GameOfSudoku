@@ -26,17 +26,17 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 private const val TAG = "GameFragment"
+private const val FRAGMENT_ID = 1
 
 class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
 
     val sudoku: MySudoku = MySudoku()
     val numberFragment = NumberPickerFragment()
-    val FRAGMENT_ID = 1 //Gamefragment will have 2 as the ID
 
     var isPuzzleComplete: Boolean = false
     var rowCtx: Int = 0
     var colCtx: Int = 0
-    private var gameDifficulty = -1
+    private var gameDifficulty = 0
     private var isGameContinued = true
     var pauseOffset: Long = 0L
     var hasRadialFragmentLaunched = false
@@ -68,7 +68,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
         sharedViewModel.currentFragment = FRAGMENT_ID
         isGameContinued = arguments!!.getBoolean("isGameContinued", true)
         arguments!!.remove("isGameContinued")
-        gameDifficulty = arguments!!.getInt("difficulty", -1)
+        gameDifficulty = arguments!!.getInt("difficulty", 0)
 
         println("Continued: " + isGameContinued)
         createPuzzle(gameDifficulty)
@@ -83,7 +83,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
             if(isGameContinued && gridString != ""){ //If a game is continued
                 val unsolvedGridString = sharedPref.getString("unsolved", "")
                 if(isPuzzleComplete){
-                    gameDifficulty = sharedPref.getInt("difficulty", -1)
+                    gameDifficulty = sharedPref.getInt("difficulty", 0)
                     println("Creating new game from solved sudoku with difficulty " + gameDifficulty)
                     pauseChronometer()
                     progressBar?.visibility = View.VISIBLE
@@ -109,7 +109,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
                     println("game difficulty: " + gameDifficulty)
                     difficultyTextView.text = getDifficultyString(gameDifficulty)
                 }else{ //If saved game does exist
-                    gameDifficulty = sharedPref.getInt("difficulty", -1)
+                    gameDifficulty = sharedPref.getInt("difficulty", 0)
                     val st1 = StringTokenizer(gridString, ",")
                     val st2 = StringTokenizer(unsolvedGridString, ",")
                     val st3 = sharedPref.getString("game_hints", "")?.split(";")

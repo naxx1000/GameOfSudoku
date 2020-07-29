@@ -1,25 +1,22 @@
 package com.rakiwow.gameofsudoku
 
-import android.graphics.Color
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.rakiwow.gameofsudoku.utils.MainDrawerContent
 import com.rakiwow.gameofsudoku.viewmodel.MainSharedViewModel
-import com.rakiwow.koalacolorpicker.ColorToHarmonyColors
-import com.rakiwow.koalacolorpicker.KoalaColorPicker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main_drawer.*
-import java.lang.Exception
 
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +28,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(main_toolbar)
         drawer = findViewById(R.id.main_activity_drawer_layout)
+
+        val sharedPref = getSharedPreferences(getString(R.string.grid_layout_key), Context.MODE_PRIVATE) ?: return
+        if (sharedPref.getBoolean("user_first_time", true)) {
+            drawer.openDrawer(GravityCompat.START)
+            sharedPref.edit().putBoolean("user_first_time", false).apply()
+        }
+
+        setSupportActionBar(main_toolbar)
         toggle = ActionBarDrawerToggle(
             this, drawer, main_toolbar, R.string.drawer_open,
             R.string.drawer_close
@@ -46,10 +50,8 @@ class MainActivity : AppCompatActivity() {
         val navController = nav_host_fragment.findNavController()
 
         //TODO Bug reporting button
-        //TODO Menu buttons are out of window upon process death
         //Instead of onClick which causes stuttering. Do these onDrawerClosed
         val args = Bundle()
-        //Continue, so send argument int -1
         drawer_button_continue.setOnClickListener {
             if(sharedViewModel.currentFragment == 1){
                 drawer.closeDrawer(GravityCompat.START)
@@ -104,6 +106,11 @@ class MainActivity : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             navController.popBackStack()
             navController.navigate(R.id.toHistoryFragment)
+        }
+        drawer_button_about.setOnClickListener {
+            drawer.closeDrawer(GravityCompat.START)
+            navController.popBackStack()
+            navController.navigate(R.id.toAboutFragment)
         }
     }
 
