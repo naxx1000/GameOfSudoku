@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#F5E9E4</color>
     <color name="colorPrimaryDark">#826A58</color>
-    <color name="colorAccent">#E2B10B</color>
+    <color name="colorAccent">#000000</color>
 
     <color name="main_background">#F5E9E4</color>
 
@@ -14,6 +14,7 @@
     <color name="textColor">#271E1B</color>
     <color name="drawerTextColor">#FFFFFF</color>
     <color name="buttonColor">#826A58</color>
+    <color name="toastColor">#A6826A58</color>
     <color name="drawerBackground">#B39084</color>
 
     <!-- CORRECT/WRONG SUDOKU -->

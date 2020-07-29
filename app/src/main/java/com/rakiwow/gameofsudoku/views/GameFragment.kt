@@ -415,7 +415,7 @@ class GameFragment : Fragment(), NumberPickerFragment.OnNumberSelectListener {
     }
 
     private fun getDifficultyString(difficulty: Int) : String{
-        when(difficulty){
+        when (difficulty) {
             0 -> return "I'M TOO YOUNG TO DIE"
             1 -> return "HURT ME PLENTY"
             2 -> return "ULTRA-VIOLENCE"

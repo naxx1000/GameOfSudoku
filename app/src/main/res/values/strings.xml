@@ -9,8 +9,10 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
     <string name="grid_layout_key">com.rakiwow.gameofsudoku.GRIDLAYOUTKEY</string>
-    <string name="submit_a_bug">Submit a bug</string>
+    <string name="submit_a_bug">Submit a bug or recommendation</string>
     <string name="send">Send</string>
     <string name="bug_hint">You can be as detailed as you want</string>
+    <string name="form_submit_success">Report submitted.</string>
+    <string name="form_submit_failed">Something went wrong.</string>
 
 </resources>
