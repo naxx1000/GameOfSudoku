@@ -20,7 +20,7 @@
         <Constraint
             android:id="@+id/drawer_button_continue"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_newgame"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         <Constraint
             android:id="@+id/drawer_button_newgame"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_records"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         <Constraint
             android:id="@+id/drawer_button_records"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_history"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         <Constraint
             android:id="@+id/drawer_button_history"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_about"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
         <Constraint
             android:id="@+id/drawer_button_about"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
         <Constraint
             android:id="@+id/drawer_diff_1"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1000dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_2"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         <Constraint
             android:id="@+id/drawer_diff_2"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1050dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_3"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         <Constraint
             android:id="@+id/drawer_diff_3"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1100dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_4"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
         <Constraint
             android:id="@+id/drawer_diff_4"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1150dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_diff_5"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
         <Constraint
             android:id="@+id/drawer_diff_5"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1200dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
         <Constraint
             android:id="@+id/drawer_button_continue"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1000dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_newgame"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
         <Constraint
             android:id="@+id/drawer_button_newgame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent">
@@ -152,7 +152,7 @@
         <Constraint
             android:id="@+id/drawer_button_records"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1200dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_history"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +162,7 @@
         <Constraint
             android:id="@+id/drawer_button_history"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1300dp"
             motion:layout_constraintBottom_toTopOf="@+id/drawer_button_about"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -172,7 +172,7 @@
         <Constraint
             android:id="@+id/drawer_button_about"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:translationY="1400dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +182,7 @@
         <Constraint
             android:id="@+id/drawer_diff_1"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_3"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -191,7 +191,7 @@
         <Constraint
             android:id="@+id/drawer_diff_2"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_3"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -200,7 +200,7 @@
         <Constraint
             android:id="@+id/drawer_diff_3"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_4"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -209,7 +209,7 @@
         <Constraint
             android:id="@+id/drawer_diff_4"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="@+id/drawer_diff_5"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -218,7 +218,7 @@
         <Constraint
             android:id="@+id/drawer_diff_5"
             android:layout_width="1000dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"

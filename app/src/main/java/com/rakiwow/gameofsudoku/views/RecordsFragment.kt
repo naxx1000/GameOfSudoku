@@ -66,15 +66,20 @@ class RecordsFragment : Fragment() {
                 timeStringBuilder.append(timeSeconds.toString() + " Seconds")
             }
             if(record.difficulty == 0){
-                record_difficulty1.text = date + " " + timeStringBuilder
+                date_difficulty1.text = date
+                record_difficulty1.text = timeStringBuilder
             }else if(record.difficulty == 1){
-                record_difficulty2.text = date + " " + timeStringBuilder
+                date_difficulty2.text = date
+                record_difficulty2.text = timeStringBuilder
             }else if(record.difficulty == 2){
-                record_difficulty3.text = date + " " + timeStringBuilder
+                date_difficulty3.text = date
+                record_difficulty3.text = timeStringBuilder
             }else if(record.difficulty == 3){
-                record_difficulty4.text = date + " " + timeStringBuilder
+                date_difficulty4.text = date
+                record_difficulty4.text = timeStringBuilder
             }else if(record.difficulty == 4){
-                record_difficulty5.text = date + " " + timeStringBuilder
+                date_difficulty5.text = date
+                record_difficulty5.text = timeStringBuilder
             }
         }
     }

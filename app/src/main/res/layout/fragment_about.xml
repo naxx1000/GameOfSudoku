@@ -7,6 +7,7 @@
         android:id="@+id/submit_bug_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#424242"
         android:text="@string/submit_a_bug"
         style="?android:listSeparatorTextViewStyle"/>
 
@@ -17,6 +18,8 @@
         android:ems="10"
         android:padding="12dp"
         android:gravity="start|top"
+        android:textColor="#000000"
+        android:textColorHint="#9E9E9E"
         android:background="#ffffff"
         android:hint="@string/bug_hint"
         android:inputType="textMultiLine"/>
