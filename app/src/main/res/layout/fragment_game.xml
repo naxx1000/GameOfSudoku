@@ -5,7 +5,7 @@
     android:id="@+id/main_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
 
@@ -25,1189 +25,1189 @@
         <!-- Region 1 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_11"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_21"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_31"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_12"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_22"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_32"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_13"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_23"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_33"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 2 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_41"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_51"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_61"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_42"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_52"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_62"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_43"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_53"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_63"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 3 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_71"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_81"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_91"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_72"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_82"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_92"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_73"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_83"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_93"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 4 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_14"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_24"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_34"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_15"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_25"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_35"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_16"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_26"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_36"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 5 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_44"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_54"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_64"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_45"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_55"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_65"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_46"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_56"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_66"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 6 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_74"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_84"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_94"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_75"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_85"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_95"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_76"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_86"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_96"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 7 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_17"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_27"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_37"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_18"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_28"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_38"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_19"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_29"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_39"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 8 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_47"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_57"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_67"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_48"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_58"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_68"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_49"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_59"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_69"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
         <!-- Region 9 -->
         <androidx.gridlayout.widget.GridLayout
             android:background="@drawable/region"
+            app:columnCount="3"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
-            app:columnCount="3"
             app:rowCount="3">
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_77"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_87"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_97"
-
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
+
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_78"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_88"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_98"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_79"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_89"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
             <com.rakiwow.gameofsudoku.utils.CellTextView
-                android:minEms="1"
                 android:id="@+id/cell_99"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
                 android:layout_margin="0.2dp"
                 android:background="@drawable/cell"
-                android:gravity="center"
-                android:text=" "
                 android:fontFamily="@font/sanchezregular"
+                android:gravity="center"
+                android:minEms="1"
+                android:text=" "
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
 
         </androidx.gridlayout.widget.GridLayout>
 
@@ -1234,16 +1234,18 @@
 
         <TextView
             android:id="@+id/difficultyTextView"
+            style="@style/Text.Game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:text=""
             android:textColor="@color/textColor"
             android:textSize="20sp" />
 
         <Chronometer
             android:id="@+id/gameChronometer"
+            style="@style/Text.Game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -1252,7 +1254,6 @@
             android:textSize="20sp" />
 
     </LinearLayout>
-
 
 
     <ProgressBar

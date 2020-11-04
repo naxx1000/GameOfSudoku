@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        style="@style/Text.History"
         android:id="@+id/history_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

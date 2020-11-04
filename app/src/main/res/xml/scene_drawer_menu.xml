@@ -39,7 +39,7 @@
                 motion:customColorValue="@color/buttonColor"/>
             <CustomAttribute
                 motion:attributeName="textSize"
-                motion:customFloatValue="14"/>
+                motion:customFloatValue="20"/>
         </Constraint>
 
         <Constraint

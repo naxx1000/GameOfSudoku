@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background">
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,136 +11,137 @@
         android:orientation="vertical"
         tools:context=".views.RecordsFragment">
 
-
         <TextView
+            style="@style/Text.MyRecords.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:text="Best times in difficulty category"
             android:textColor="#000000"
-            android:text="Best times in difficulty category"/>
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_marginLeft="40dp"
+            style="@style/Text.MyRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="ULTRA-NIGHTMARE"/>
+            android:text="ULTRA-NIGHTMARE" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/date_difficulty5"
+            style="@style/Text.MyRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000" />
+            android:layout_marginLeft="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/record_difficulty5"
+            style="@style/Text.MyRecords.Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:layout_marginStart="40dp"
+            android:text="-"
+            android:textSize="16sp" />
 
         <TextView
-            android:layout_marginLeft="40dp"
+            style="@style/Text.MyRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="NIGHTMARE"/>
+            android:text="NIGHTMARE" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/date_difficulty4"
+            style="@style/Text.MyRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000" />
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/record_difficulty4"
+            style="@style/Text.MyRecords.Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
+            style="@style/Text.MyRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="ULTRA-VIOLENCE"/>
+            android:text="ULTRA-VIOLENCE" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/date_difficulty3"
+            style="@style/Text.MyRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000" />
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/record_difficulty3"
+            style="@style/Text.MyRecords.Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
+            style="@style/Text.MyRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="HURT ME PLENTY"/>
+            android:text="HURT ME PLENTY" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/date_difficulty2"
+            style="@style/Text.MyRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000" />
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/record_difficulty2"
+            style="@style/Text.MyRecords.Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
+            style="@style/Text.MyRecords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="I'M TOO YOUNG TO DIE"/>
+            android:text="I'M TOO YOUNG TO DIE" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/date_difficulty1"
+            style="@style/Text.MyRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000" />
+            android:layout_marginStart="40dp"
+            android:text="-" />
 
         <TextView
-            android:layout_marginLeft="40dp"
             android:id="@+id/record_difficulty1"
+            style="@style/Text.MyRecords.Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:paddingBottom="10dp"/>
+            android:layout_marginStart="40dp"
+            android:paddingBottom="10dp"
+            android:text="-" />
 
     </LinearLayout>
 

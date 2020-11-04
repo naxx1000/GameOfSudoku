@@ -2,9 +2,11 @@
 <resources>
     <color name="colorPrimary">#F5E9E4</color>
     <color name="colorPrimaryDark">#826A58</color>
-    <color name="colorAccent">#000000</color>
+    <color name="colorAccent">#B39084</color>
+    <color name="colorTextHint">#817871</color>
 
-    <color name="main_background">#F5E9E4</color>
+    <color name="colorTextOnLight">#302720</color>
+    <color name="colorTextOnDark">#F6DFCC</color>
 
     <!-- LIGHT THEME CS1 -->
     <color name="cellDefault">#FFFFFF</color>
@@ -20,4 +22,5 @@
     <!-- CORRECT/WRONG SUDOKU -->
     <color name="wrongSudoku">#EF9A9A</color>
     <color name="correctSudoku">#A5D6A7</color>
+
 </resources>
